@@ -1,25 +1,32 @@
-import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { Signup } from './Components/Signup';
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
+import { Login } from './Components/Login';
+import { Dashboard } from './Components/Dashboard';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Provider } from 'react-redux';
+import { store } from './Redux/Store'
+import { Test } from './Test';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider store={store}>
+      <Router>
+
+        <div className="App">
+          <h1 className="heading">Campus Recruitment System</h1>
+          <Switch>
+            <Route exact path="/" >  <Login /></Route>
+            <Route path="/signup" ><Signup /></Route>
+            <Route path="/dashboard" ><Dashboard /></Route>
+            <Route path="/test" ><Test /></Route>
+
+          </Switch>
+
+
+        </div>
+      </Router >
+    </Provider>
   );
 }
 
