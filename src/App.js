@@ -1,7 +1,7 @@
 import './App.css';
-import { Signup } from './Components/Signup';
+import { Signup } from './Components/Signup/Signup';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
-import { Login } from './Components/Login';
+import { Login } from './Components/Login/Login';
 import { Dashboard } from './Components/Dashboard';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Provider } from 'react-redux';

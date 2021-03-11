@@ -1,0 +1,25 @@
+Form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 50vw;
+    padding: 0.1em;
+  }
+  
+  .heading{
+    display: flex;
+    flex-direction: column;
+    text-align:center;
+    justify-content: center;
+  }
+  
+  
+  .labels{
+  display: flex;
+  }
+  
+  
+  .inputerror{
+    display: flex;
+    color: red;
+  }

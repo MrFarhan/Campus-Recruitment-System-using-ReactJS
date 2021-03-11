@@ -1,6 +1,7 @@
 .App {
   display: flex;
   flex-direction: column;
+  padding: 2em;
   width: 100vw;
   justify-content: center;
 align-items: center;

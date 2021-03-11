@@ -3,14 +3,15 @@ import { Button, Form, InputGroup } from 'react-bootstrap'
 import { useHistory } from 'react-router-dom'
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import "../App.css"
-import { AiFillEyeInvisible } from 'react-icons/ai';
+import "./Login.css"
+import usePasswordToggler from './useHooks';
 
 
 
 
 export const Login = () => {
     let history = useHistory()
+    const [Icon, inputType] = usePasswordToggler()
 
     const formik = useFormik({
         initialValues: {
@@ -43,6 +44,7 @@ export const Login = () => {
     const SignupFunc = () => {
         history.push("/signup")
     }
+    console.log("input tupe is ", inputType)
 
     return (
         <Form onSubmit={formik.handleSubmit} >
@@ -59,10 +61,9 @@ export const Login = () => {
             <Form.Group >
                 <Form.Label className="labels">Password</Form.Label>
                 <InputGroup.Prepend>
-                <Form.Control id="password" type="password" placeholder="Password" {...formik.getFieldProps('password')} />
-                    <InputGroup.Text id="inputGroupPrepend" style={{marginLeft:"-1em"}}><AiFillEyeInvisible /></InputGroup.Text>
+                    <Form.Control id="password" type={inputType} placeholder="Password" {...formik.getFieldProps('password')} />
+                    <InputGroup.Text id="inputGroupPrepend" style={{ marginLeft: "-2.5em" }}>{Icon}</InputGroup.Text>
                 </InputGroup.Prepend>
-                {/* <AiFillEyeInvisible /> */}
                 <span className="inputerror">{formik.touched.password && formik.errors.password ? (
                     <div>{formik.errors.password}</div>
                 ) : null}</span>
