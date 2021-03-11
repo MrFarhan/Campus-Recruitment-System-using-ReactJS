@@ -7,6 +7,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Provider } from 'react-redux';
 import { store } from './Redux/Store'
 import { Test } from './Test';
+import { CompanyDashboard } from './Components/Company/companyDashboard';
 
 function App() {
   return (
@@ -14,12 +15,13 @@ function App() {
       <Router>
 
         <div className="App">
-          <h1 className="heading">Campus Recruitment System</h1>
+          {/* <h1 className="heading">Campus Recruitment System</h1> */}
           <Switch>
             <Route exact path="/" >  <Login /></Route>
             <Route path="/signup" ><Signup /></Route>
             <Route path="/dashboard" ><Dashboard /></Route>
             <Route path="/test" ><Test /></Route>
+            <Route path="/company-dashboard" ><CompanyDashboard /></Route>
 
           </Switch>
 

@@ -1,8 +1,12 @@
 .App {
+  background-color: rgb(156, 186, 206);
+  /* background-image: url("./bg.jpg"); */
+  /* background-repeat: no-repeat; */
   display: flex;
   flex-direction: column;
-  padding: 2em;
+  /* padding: 2em; */
   width: 100vw;
+  height: 100vh;
   justify-content: center;
 align-items: center;
 }
