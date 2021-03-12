@@ -5,20 +5,21 @@ import { IoIosNotificationsOutline } from "react-icons/io"
 import { useHistory } from 'react-router-dom'
 
 
-export const Header = () => {
+export const Header = (props) => {
     let history = useHistory()
     const logout = () => {
         history.push("/")
     }
+
     return (
         <Navbar bg="light" expand="lg" fixed="top"  >
             <Navbar.Brand href="#home">Campus Recruitment System</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto">
-                    <Nav.Link href="#Applied">My Posts</Nav.Link>
-                    <Nav.Link href="#Applied">Applied Candidates</Nav.Link>
-                    <Nav.Link href="#Profile">Profile</Nav.Link>
+                    {props?.Data?.map((item, index) => {
+                        return <Nav.Link href={item["route"]} key={index} >{item["Text"]}</Nav.Link>
+                    })}
                 </Nav>
                 <Form inline>
                     <IoIosNotificationsOutline size="2em" /> &nbsp;
@@ -26,6 +27,5 @@ export const Header = () => {
                 </Form>
             </Navbar.Collapse>
         </Navbar>
-
     )
 }

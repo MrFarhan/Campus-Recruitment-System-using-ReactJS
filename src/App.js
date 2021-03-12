@@ -1,13 +1,15 @@
 import './App.css';
-import { Signup } from './Components/Signup/Signup';
+import { Signup } from './Pages/Signup/Signup';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
-import { Login } from './Components/Login/Login';
-import { Dashboard } from './Components/Dashboard';
+import { Login } from './Pages/Login/Login';
+// import { Dashboard } from './Components/Dashboard';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Provider } from 'react-redux';
 import { store } from './Redux/Store'
 import { Test } from './Test';
-import { CompanyDashboard } from './Components/Company/companyDashboard';
+import { CompanyDashboard } from './Pages/Company/companyDashboard';
+import { StudentDashboard } from './Pages/Student/StudentDashboard';
+import { AdminDashboard } from './Pages/Admin/AdminDashboard';
 
 function App() {
   return (
@@ -19,9 +21,12 @@ function App() {
           <Switch>
             <Route exact path="/" >  <Login /></Route>
             <Route path="/signup" ><Signup /></Route>
-            <Route path="/dashboard" ><Dashboard /></Route>
+            {/* <Route path="/dashboard" ><Dashboard /></Route> */}
+            <Route path="/comp-dashboard" ><CompanyDashboard /></Route>
+            <Route path="/std-dashboard" ><StudentDashboard /></Route>
+            <Route path="/admin-dashboard" ><AdminDashboard /></Route>
             <Route path="/test" ><Test /></Route>
-            <Route path="/company-dashboard" ><CompanyDashboard /></Route>
+
 
           </Switch>
 
