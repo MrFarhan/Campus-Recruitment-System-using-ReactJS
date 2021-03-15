@@ -13,8 +13,18 @@ export const Test = () => {
 }
 
 
+{/* <Spinner animation="border" /> */ }
 
 
+
+// .then(() => {
+//     if (firebase.auth().currentUser?.role === "Company") {
+//         console.log("company signed up")
+//     } else if (firebase.auth().currentUser?.role === "Student"){
+//         console.log("Student signed up")
+//     }
+//     // history.push("/")
+// })
 
 
 // import React from 'react'
@@ -103,3 +113,123 @@ export const Test = () => {
 //             </Container ></>
 //     )
 // }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        // // <Layout>
+        // <div  >
+        //     <Form  >
+        //         {/* <div className="mb-3">
+        //                 <Form.File >
+        //                     <img src={dp} className="profilePagePic" alt="Profile pic" />
+        //                     <Form.File.Input onChange={((e) => imgUpload(e))} />
+        //                 </Form.File>
+        //                 <span className="inputerror">{uploadError && uploadError.length ? "Kindly upload image with JPG or PNG format" : null}</span>
+        //             </div> */}
+
+
+        //         {console.log("props are : ", props)}
+        //         <Form.Group>
+        //             <Form.Label className="labels" htmlFor="firstName">First Name</Form.Label>
+        //             <Form.Control id="firstName" type="text" placeholder="Enter First Name" 
+        //             // {...formik.getFieldProps('firstName')}
+        //              autoFocus />
+        //             {/* <span className="inputerror">  {formik.touched.firstName && formik.errors.firstName ? (
+        //                     <div>{formik.errors.firstName}</div>
+        //                 ) : null}</span> */}
+        //         </Form.Group>
+
+        //         <Form.Group>
+        //             <Form.Label className="labels" htmlFor="lastName">Last Name</Form.Label>
+        //             <Form.Control id="lastName" type="text" placeholder="Enter Last Name" 
+        //             // {...formik.getFieldProps('lastName')}
+        //              />
+        //             {/* <span className="inputerror">  {formik.touched.lastName && formik.errors.lastName ? (
+        //                     <div>{formik.errors.lastName}</div>
+        //                 ) : null}</span> */}
+        //         </Form.Group>
+
+        //         <Form.Group>
+        //             <Form.Label className="labels" htmlFor="email">Email address</Form.Label>
+        //             <Form.Control id="email" type="email" placeholder="Enter Email" 
+        //             // {...formik.getFieldProps('email')}
+        //              disabled />
+        //             {/* <span className="inputerror">  {formik.touched.email && formik.errors.email ? (
+        //                     <div>{formik.errors.email}</div>
+        //                 ) : null}</span> */}
+        //         </Form.Group>
+
+        //         <>
+        //             <Form.Label className="labels" htmlFor="cNumber" style={{ display: "flex" }}>Phone Number</Form.Label>
+        //             <InputGroup style={{ marginBottom: "1rem" }}>
+        //                 <InputGroup.Text>+92</InputGroup.Text>
+        //                 <Form.Control id="cNumber" type="number" placeholder="Enter your mobile number" 
+        //                 // {...formik.getFieldProps('cNumber')}
+        //                  />
+        //             </InputGroup>
+        //             {/* <span className="inputerror" style={{ marginBottom: "1rem", marginTop: "-1rem" }}>  {formik.touched.cNumber && formik.errors.cNumber ? (
+        //                     <div>{formik.errors.cNumber}</div>
+        //                 ) : null}</span> */}
+
+
+        //         </>
+
+
+        //         <Form.Group >
+        //             <Form.Label className="labels" htmlFor="dateofBirth">Select your date of birth</Form.Label>
+        //             <Form.Control id="dateofBirth" type="date" placeholder="Select your date of birth" 
+        //             // {...formik.getFieldProps('dateofBirth')}
+        //              disabled />
+        //             {/* <span className="inputerror">  {formik.touched.dateofBirth && formik.errors.dateofBirth ? (
+        //                     <div>{formik.errors.dateofBirth}</div>
+        //                 ) : null}</span> */}
+        //         </Form.Group>
+
+
+
+        //         <Form.Group style={{ display: "flex" }} 
+        //         // {...formik.getFieldProps('gender')}
+        //          >
+        //             <Form.Label style={{ marginRight: "1rem" }}>Gender</Form.Label>
+        //             <Form.Check style={{ justifyContent: "flex-start" }}
+        //                 type="radio"
+        //                 label="Male"
+        //                 name="gender"
+        //                 id="Male"
+        //                 value="Male"
+        //                 // checked={formik?.values?.['gender'] === 'Male'} disabled
+        //             />
+        //             <Form.Check style={{ marginLeft: "1rem" }}
+        //                 type="radio"
+        //                 label="Female"
+        //                 name="gender"
+        //                 id="Female"
+        //                 value="Female"
+        //                 // checked={formik?.values?.['gender'] === 'Female'} disabled
+        //             />
+        //             {/* <div>                <br /><div className="inputerror" style={{ marginLeft: "-13em" }}>  {formik.touched.gender && formik.errors.gender ? (
+        //                     <div>{formik.errors.gender}</div>
+        //                 ) : null}</div></div> */}
+        //         </Form.Group>
+
+
+
+        //         <Button variant="primary" type="submit" > Update</Button>
+        //     </Form>
+
+        // </div >
+        // // </Layout >

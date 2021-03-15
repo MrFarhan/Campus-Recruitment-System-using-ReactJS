@@ -5,12 +5,15 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import "./Login.css"
 import usePasswordToggler from './useHooks';
-
+import firebase from "firebase"
+import { currentUserAction } from '../../Redux/Actions';
+import { useDispatch } from 'react-redux';
 
 
 
 export const Login = () => {
     let history = useHistory()
+    let dispatch = useDispatch()
     const [Icon, inputType] = usePasswordToggler()
 
     const formik = useFormik({
@@ -37,14 +40,48 @@ export const Login = () => {
 
 
     const LoginFunc = (email, pass) => {
-        history.push("/dashboard")
+        // history.push("/dashboard")
+
+        firebase.auth().signInWithEmailAndPassword(email, pass)
+            .then(() => {
+                firebase.database().ref(`Users/${firebase.auth().currentUser?.uid}/`).on("value", (res) => {
+                    let userData = res.val()
+                    console.log("res.val is ", res.val())
+                    dispatch(currentUserAction(res.val()))
+                    if (userData && userData.role === "Company") {
+                        // currentUserAction(res.val())
+                        history.push("/comp-dashboard")
+                    }
+                    else if (userData && userData.role === "Student") {
+                        history.push("/std-dashboard")
+                    }
+
+                })
+            })
+            // .then(() => {
+            //     // let uid = 
+            //     firebase.database().ref(`Users/${firebase.auth().currentUser?.uid}/`).on("value", (res) => {
+            //         console.log("res.val is ", res.val())
+            //     })
+            // })
+            .catch(function (error) {
+                // Handle Errors here.
+                var errorCode = error.code;
+                var errorMessage = error.message;
+                // [START_EXCLUDE] 
+                if (errorCode === 'auth/wrong-password') {
+                    alert('Wrong password.');
+                } else {
+                    alert(errorMessage);
+                }
+                // [END_EXCLUDE]
+            });
 
     }
 
     const SignupFunc = () => {
         history.push("/signup")
     }
-    console.log("input tupe is ", inputType)
 
     return (
         <Form onSubmit={formik.handleSubmit} >

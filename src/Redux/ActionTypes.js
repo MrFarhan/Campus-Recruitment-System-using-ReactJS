@@ -1,2 +1,1 @@
-export const NAME = "NAME";
-export const EMAIL = "EMAIL";
+export const CURRENT_USER = "CURRENT_USER";

@@ -1,22 +1,15 @@
-import { NAME , EMAIL} from './ActionTypes'
+import { CURRENT_USER } from './ActionTypes'
 
 export const initialState = {
-    name:"",
-    email:"",
+    currentUser: {}
 }
 
 export default function Reducer(state = initialState, { type, payload }) {
     switch (type) {
-        case NAME:
-            console.log(payload)
+        case CURRENT_USER:
             return {
                 ...state,
-                name: payload
-            }
-        case EMAIL:
-            return {
-                ...state,
-                email: payload
+                currentUser: payload
             }
         default:
             return state

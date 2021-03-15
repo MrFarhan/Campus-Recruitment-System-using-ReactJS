@@ -3,6 +3,7 @@ import { Button, Form, Nav, Navbar } from 'react-bootstrap';
 import { CgLogOut } from "react-icons/cg"
 import { IoIosNotificationsOutline } from "react-icons/io"
 import { useHistory } from 'react-router-dom'
+import { Link } from "react-router-dom";
 
 
 export const Header = (props) => {
@@ -12,13 +13,14 @@ export const Header = (props) => {
     }
 
     return (
+        <div >
         <Navbar bg="light" expand="lg" fixed="top"  >
             <Navbar.Brand href="#home">Campus Recruitment System</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto">
                     {props?.Data?.map((item, index) => {
-                        return <Nav.Link href={item["route"]} key={index} >{item["Text"]}</Nav.Link>
+                        return <Link key={index} to={item["route"]} style={{ textDecoration: "none", color: "black" }}> &nbsp; {item["Text"]} &nbsp; </Link>
                     })}
                 </Nav>
                 <Form inline>
@@ -27,5 +29,6 @@ export const Header = (props) => {
                 </Form>
             </Navbar.Collapse>
         </Navbar>
+        </div>
     )
 }

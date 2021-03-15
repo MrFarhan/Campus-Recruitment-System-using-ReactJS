@@ -3,11 +3,13 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { Form, Button } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
-
+import firebase from "firebase"
 
 
 export const Signup = () => {
+    var today = new Date().toISOString()
 
+    
     let history = useHistory()
     const [signuperror, setSignuperror] = React.useState()
 
@@ -50,7 +52,27 @@ export const Signup = () => {
     });
 
     const SignupFunc = (values) => {
-        history.push("/")
+
+        firebase.auth().createUserWithEmailAndPassword(values.email, values.password).then((res) => {
+            let UID = firebase.auth().currentUser?.uid
+            firebase.database().ref('Users/' + UID).set({
+                fullName: values.fullName,
+                email: values.email,
+                role: values.radioType,
+                uid: UID,
+                accountCreatedOn: today
+            })
+            history.push("/")
+
+        }).catch(function (error) {
+            // Handle Errors here.
+            var errorCode = error.code;
+            var errorMessage = error.message;
+
+            setSignuperror(errorMessage)
+
+            console.log(errorCode, "error code" + errorMessage, "error message")
+        });
     }
 
 

@@ -1,11 +1,6 @@
-import { NAME, EMAIL } from "./ActionTypes"
+import { CURRENT_USER } from "./ActionTypes"
 
-export const nameAction = (payload) => ({
-    type: NAME,
-    payload
-})
-
-export const emailAction = (payload) => ({
-    type: EMAIL,
+export const currentUserAction = (payload) => ({ 
+    type: CURRENT_USER,
     payload
 })
