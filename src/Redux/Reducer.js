@@ -1,7 +1,8 @@
-import { CURRENT_USER } from './ActionTypes'
+import { CURRENT_USER ,IS_LOADING} from './ActionTypes'
 
 export const initialState = {
-    currentUser: {}
+    currentUser: {},
+    isLoading: true
 }
 
 export default function Reducer(state = initialState, { type, payload }) {
@@ -10,6 +11,11 @@ export default function Reducer(state = initialState, { type, payload }) {
             return {
                 ...state,
                 currentUser: payload
+            }
+        case IS_LOADING:
+            return {
+                ...state,
+                isLoading: payload
             }
         default:
             return state

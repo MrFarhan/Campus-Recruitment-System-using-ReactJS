@@ -6,7 +6,7 @@
   flex-direction: column;
   /* padding: 2em; */
   width: 100vw;
-  /* height: 100vh; */
+  height: 100vh;
   justify-content: center;
 align-items: center;
 }

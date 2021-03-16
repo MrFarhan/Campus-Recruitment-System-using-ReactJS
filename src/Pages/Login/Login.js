@@ -6,8 +6,9 @@ import * as Yup from 'yup';
 import "./Login.css"
 import usePasswordToggler from './useHooks';
 import firebase from "firebase"
-import { currentUserAction } from '../../Redux/Actions';
-import { useDispatch } from 'react-redux';
+import { currentUserAction, isLoadingAction } from '../../Redux/Actions';
+import { useDispatch, useSelector } from 'react-redux';
+import { Loader } from '../../Components/Loader';
 
 
 
@@ -15,7 +16,10 @@ export const Login = () => {
     let history = useHistory()
     let dispatch = useDispatch()
     const [Icon, inputType] = usePasswordToggler()
-
+    const state = useSelector(state => state)
+    const currentUser = state?.currentUser
+    const loading = state?.isLoading
+    console.log("Loading is ", loading)
     const formik = useFormik({
         initialValues: {
             email: '',
@@ -41,6 +45,7 @@ export const Login = () => {
 
     const LoginFunc = (email, pass) => {
         // history.push("/dashboard")
+        dispatch(isLoadingAction(true))
 
         firebase.auth().signInWithEmailAndPassword(email, pass)
             .then(() => {
@@ -48,23 +53,14 @@ export const Login = () => {
                     let userData = res.val()
                     console.log("res.val is ", res.val())
                     dispatch(currentUserAction(res.val()))
-                    if (userData && userData.role === "Company") {
-                        // currentUserAction(res.val())
-                        history.push("/comp-dashboard")
+                    dispatch(isLoadingAction(false))
+                    if (userData && userData.role === "Company" || userData.role === "Student" || userData.role === "Admin") {
+                        history.push("/dashboard/profile")
                     }
-                    else if (userData && userData.role === "Student") {
-                        history.push("/std-dashboard")
-                    }
+                    else alert("Role ???")
 
                 })
-            })
-            // .then(() => {
-            //     // let uid = 
-            //     firebase.database().ref(`Users/${firebase.auth().currentUser?.uid}/`).on("value", (res) => {
-            //         console.log("res.val is ", res.val())
-            //     })
-            // })
-            .catch(function (error) {
+            }).catch(function (error) {
                 // Handle Errors here.
                 var errorCode = error.code;
                 var errorMessage = error.message;
@@ -82,6 +78,9 @@ export const Login = () => {
     const SignupFunc = () => {
         history.push("/signup")
     }
+
+
+    if (loading) <Loader />
 
     return (
         <Form onSubmit={formik.handleSubmit} >

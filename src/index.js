@@ -3,11 +3,13 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as firebase from "./firebase.js";
+import { Provider, useDispatch } from 'react-redux';
+import { store } from './Redux/Store'
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <Provider store={store}>
+  <App />
+  </Provider>,
   document.getElementById('root')
 );
 
