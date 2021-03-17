@@ -6,7 +6,7 @@ import { useHistory } from 'react-router-dom'
 import { Link } from "react-router-dom";
 import firebase from "firebase"
 import { useDispatch } from 'react-redux';
-import { currentUserAction } from '../Redux/Actions';
+import { currentUserAction, isLoadingAction } from '../Redux/Actions';
 
 
 export const Header = (props) => {
@@ -14,8 +14,9 @@ export const Header = (props) => {
     let dispatch = useDispatch()
     const logout = () => {
         firebase.auth().signOut()
-        history.push("/")
         dispatch(currentUserAction(false))
+        dispatch(isLoadingAction(false))
+        history.push("/")
     }
 
     // const Home = () => {

@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Button, Form, InputGroup } from 'react-bootstrap'
-import { useHistory } from 'react-router-dom'
+import { Redirect, useHistory } from 'react-router-dom'
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import "./Login.css"
@@ -13,6 +13,35 @@ import { Loader } from '../../Components/Loader';
 
 
 export const Login = () => {
+    useEffect(() => {
+        firebase.auth().onAuthStateChanged(function (user) {
+            if (user) {
+                // User is signed in.
+                firebase.database().ref(`Users/${firebase.auth().currentUser?.uid}/`).on("value", (res) => {
+                    dispatch(currentUserAction(res.val()))
+                    dispatch(isLoadingAction(false))
+                })
+            } else {
+                // No user is signed in.
+                <Redirect to="/" />
+                dispatch(isLoadingAction(false))
+            }
+        });
+
+    }, [])
+    // firebase.database().ref(`Users/${firebase.auth().currentUser?.uid}/`).on("value", (res) => {
+    //     let userData = res.val()
+    //     console.log(userData, "user data is in login ")
+    //     console.log("res.val is ", res.val())
+    //     dispatch(currentUserAction(res.val()))
+    //     dispatch(isLoadingAction(false))
+    //     if (userData && userData?.role === "Company" || userData.role === "Student" || userData.role === "Admin") {
+    //         history.push("/dashboard/profile")
+    //     }
+    //     else alert("Role ???")
+
+    // })
+
     let history = useHistory()
     let dispatch = useDispatch()
     const [Icon, inputType] = usePasswordToggler()
@@ -44,17 +73,15 @@ export const Login = () => {
 
 
     const LoginFunc = (email, pass) => {
-        // history.push("/dashboard")
-        dispatch(isLoadingAction(true))
-
         firebase.auth().signInWithEmailAndPassword(email, pass)
             .then(() => {
                 firebase.database().ref(`Users/${firebase.auth().currentUser?.uid}/`).on("value", (res) => {
                     let userData = res.val()
+                    console.log(userData, "user data is in login ")
                     console.log("res.val is ", res.val())
                     dispatch(currentUserAction(res.val()))
                     dispatch(isLoadingAction(false))
-                    if (userData && userData.role === "Company" || userData.role === "Student" || userData.role === "Admin") {
+                    if (userData && userData?.role === "Company" || userData.role === "Student" || userData.role === "Admin") {
                         history.push("/dashboard/profile")
                     }
                     else alert("Role ???")
@@ -84,6 +111,7 @@ export const Login = () => {
 
     return (
         <Form onSubmit={formik.handleSubmit} >
+            <h1 className="heading">Campus Recruitment System from App JS</h1><br />
             <Form.Group >
                 <Form.Label className="labels" htmlFor="email">Email</Form.Label>
                 <Form.Control id="email" type="email" placeholder="Enter email" {...formik.getFieldProps('email')} autoFocus />
