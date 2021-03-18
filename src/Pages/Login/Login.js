@@ -20,7 +20,7 @@ export const Login = () => {
                 firebase.database().ref(`Users/${firebase.auth().currentUser?.uid}/`).on("value", (res) => {
                     dispatch(currentUserAction(res.val()))
                     dispatch(isLoadingAction(false))
-                    history.push("/dashboard/profile")
+                    history.push("/dashboard")
                 })
             } else {
                 // No user is signed in.
@@ -84,7 +84,7 @@ export const Login = () => {
                     dispatch(currentUserAction(res.val()))
                     dispatch(isLoadingAction(false))
                     if (userData && userData?.role === "Company" || userData.role === "Student" || userData.role === "Admin") {
-                        history.push("/dashboard/profile")
+                        history.push("/dashboard")
                     }
                     else history.push("/")
 

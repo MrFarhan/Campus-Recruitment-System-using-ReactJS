@@ -41,14 +41,12 @@ function App() {
   }, [])
 
 
-  let studentHeaderData = [{ "Text": "Applied Jobs", "route": "/dashboard/applied_jobs" }, { "Text": "Profile", "route": "/dashboard/Profile" }]
-  let companyHeaderData = [{ "Text": " My Vacancies ", "route": "/dashboard/vacancies" }, { "Text": " Applied Candidates ", "route": "/dashboard/applied_job" }, { "Text": " Profile ", "route": "/dashboard/profile" }]
+  let studentHeaderData = [{ "Text": "Dashboard", "route": "/dashboard" }, { "Text": "Applied Jobs", "route": "/dashboard/applied_jobs" }, { "Text": "Profile", "route": "/dashboard/Profile" }]
+  let companyHeaderData = [{ "Text": "Dashboard", "route": "/dashboard" }, { "Text": " My Vacancies ", "route": "/dashboard/vacancies" }, { "Text": " Applied Candidates ", "route": "/dashboard/applied_job" }, { "Text": " Profile ", "route": "/dashboard/profile" }]
 
   const roleCond = (param) => currentUser?.role === param;
 
   if (loading) return <Loader />
-  if (!loading && !currentUser) return history.push("/")
-  console.log("!!currentUser?.uid", !currentUser?.uid)
   return (
     <>
       <Router>
@@ -60,9 +58,9 @@ function App() {
           <Switch>
             <Route exact path="/" >  <Login /></Route>
             <Route path="/signup" ><Signup /></Route>
-            {(roleCond("Student") || roleCond("Company") || roleCond("Admin") ? <Route exact path="/dashboard/profile" ><MainProfile /></Route> : <></>)}
 
             {(currentUser?.uid) && <Route exact path="/dashboard" >{roleCond("Student") ? <StudentDashboard /> : roleCond("Company") ? <CompanyDashboard /> : roleCond("Admin") ? <AdminDashboard /> : <></>}</Route>}
+            {(roleCond("Student") || roleCond("Company") || roleCond("Admin") ? <Route exact path="/dashboard/profile" ><MainProfile /></Route> : <></>)}
 
 
             <Route path="/test" ><Test /></Route>

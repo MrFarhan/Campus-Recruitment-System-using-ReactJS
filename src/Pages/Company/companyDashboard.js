@@ -29,10 +29,11 @@ export const CompanyDashboard = () => {
         // eslint-disable-next-line
     }, [])
     if (loading) <Loader />
-    if (!currentUser || !!currentUser) history.push('/')
+    console.log("")
+    if (!loading && !currentUser) history.push('/')
 
     return (<>
-        <div className="dashboard">
+        <div className="dashboard" style={{backgroundColor:"red"}}>
             company dashboard here
         </div></>
     )
