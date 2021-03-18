@@ -33,7 +33,6 @@ function App() {
         })
       } else {
         // No user is signed in.
-        <Redirect to="/" />
         console.log("else in app for use effect called ")
         dispatch(isLoadingAction(false))
       }
@@ -48,10 +47,12 @@ function App() {
   const roleCond = (param) => currentUser?.role === param;
 
   if (loading) return <Loader />
+  if (!loading && !currentUser) return history.push("/")
+  console.log("!!currentUser?.uid", !currentUser?.uid)
   return (
     <>
       <Router>
-        {!loading && !!currentUser?.uid ? <Redirect to="/dashboard/profile" /> : <Redirect to="/" />}
+        {!loading && !currentUser?.uid ? <Redirect to="/" /> : <></>}
         <div className="App">
 
           {(currentUser?.uid) && <Header Data={roleCond("Student") ? studentHeaderData : roleCond("Company") ? companyHeaderData : <></>} />}

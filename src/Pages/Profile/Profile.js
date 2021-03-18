@@ -61,9 +61,9 @@ export const Profile = (props) => {
 
     let history = useHistory()
 
-    const UpdateFunc = (values) => {
-        values.preventDefault()
-        console.log("values are : ", values.target.value)
+    const UpdateFunc = (e) => {
+        e.preventDefault()
+        console.log("e are : ", e.target)
         // let UID = firebase.auth().currentUser?.uid
         // firebase.database().ref("Users/" + UID).update({
         //     firstName: values.firstName,
@@ -74,30 +74,31 @@ export const Profile = (props) => {
 
 
     if (loading) <Loader />
+    // if (!loading && !currentUser) history.push("/")
+    { console.log("current user is ", currentUser)}
 
+    return (<Form onSubmit={(e) => e.preventDefault()}>
 
-    return (<Form onSubmit={(e) => UpdateFunc(e)}>
-
-
-        { Array.from(props?.data).map((item, index) => {
+        {/* {console.log("props . data is ", props.data?.fields)} */}
+        { Array.from(props?.data?.fields).map((item, index) => {
             console.log("props are ", props["data"])
-            if (item["type"] === "text") {
+            if (item?.type === "text") {
                 return (
                     <Form.Group>
-                        <Form.Label className="labels" htmlFor={item["id"]}>{item?.placeholder}</Form.Label>
-                        <Form.Control id={item["id"]} type={item?.type} placeholder={item?.placeholder} />
+                        <Form.Label className="labels" htmlFor={item?.id}>{item?.placeholder}</Form.Label>
+                        <Form.Control id={item?.id} type={item?.type} placeholder={item?.placeholder} value={item?.value} disabled={true} />
                     </Form.Group>)
-            } else if (item["type"] === "email") {
+            } else if (item?.type === "email") {
                 return (
                     <Form.Group>
-                        <Form.Label className="labels" htmlFor={item["id"]}>{item?.placeholder}</Form.Label>
-                        <Form.Control id={item["id"]} type="email" placeholder={item?.placeholder} />
+                        <Form.Label className="labels" htmlFor={item?.id}>{item?.placeholder}</Form.Label>
+                        <Form.Control id={item?.id} type="email" placeholder={item?.placeholder} value={item?.value} disabled={true} />
                     </Form.Group>)
-            } else if (item["type"] === "textarea") {
+            } else if (item?.type === "textarea") {
                 return (
                     <Form.Group>
-                        <Form.Label className="labels" htmlFor={item["id"]}>{item?.placeholder}</Form.Label>
-                        <Form.Control id={item["id"]} as="textarea" rows={3} placeholder={item?.placeholder} />
+                        <Form.Label className="labels" htmlFor={item?.id}>{item?.placeholder}</Form.Label>
+                        <Form.Control id={item?.id} as="textarea" rows={3} placeholder={item?.placeholder} value={item?.value} onChange={(e) => item?.changeHandler(e)} />
                     </Form.Group>)
             }
         })}
@@ -105,7 +106,7 @@ export const Profile = (props) => {
         <Form.Group>
             <Form.Control type="text" placeholder={`Signed in as ${currentUserRole}`} disabled={true} />
         </Form.Group>
-        <Button variant="primary" type="submit" > Update</Button>
+        <Button variant="primary" type="submit" onClick={props?.data?.onsubmit} > Update</Button>
     </Form>
     )
 }
