@@ -1,6 +1,6 @@
 import React from 'react'
 import { Col, Container, Row } from 'react-bootstrap';
-import { MyModal } from './Modal';
+import { MyModal } from '../../Components/Modal';
 
 export const Body = () => {
     return (

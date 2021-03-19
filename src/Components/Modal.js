@@ -72,11 +72,20 @@ export const MyModal = () => {
         );
     }
 
+    const PostJob = () => {
+        setModalShow(true)
+        // let UID = firebase.auth().currentUser?.uid
+        // firebase.database().ref("Jobs/" ).update({
+        //     profile: profile,
+        // }).then("successfully updated profile").catch((e) => console.log("error while updating profile is : ", e))
+        // return history.push("/")
+    }
+
 
     return (
         <>
             <AddVecancyModal show={modalShow} onHide={() => setModalShow(false)} />
-            <Button variant="outline-success" onClick={() => setModalShow(true)} >Post Job</Button>
+            <Button variant="outline-success" onClick={() => PostJob()} style={{ display: "block", width: "50%" }}>Post Job</Button>
             <br />
         </>
     )

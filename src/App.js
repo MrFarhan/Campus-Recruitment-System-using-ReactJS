@@ -6,7 +6,7 @@ import { Login } from './Pages/Login/Login';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { Test } from './Test';
-import { CompanyDashboard } from './Pages/Company/companyDashboard';
+import { CompanyDashboard } from './Pages/Company/Dashboard/companyDashboard';
 import { StudentDashboard } from './Pages/Student/StudentDashboard';
 import { AdminDashboard } from './Pages/Admin/AdminDashboard';
 import { MainProfile } from './Pages/Profile/MainProfile';
@@ -14,6 +14,7 @@ import firebase from "firebase"
 import { currentUserAction, isLoadingAction } from './Redux/Actions';
 import { Header } from "./Components/Header";
 import { Loader } from "./Components/Loader";
+import { Vacancies } from "./Pages/Company/Vacancies/Vacancies";
 
 function App() {
   let history = useHistory()
@@ -27,7 +28,7 @@ function App() {
     firebase.auth().onAuthStateChanged(function (user) {
       if (user) {
         // User is signed in.
-        firebase.database().ref(`Users/${firebase.auth().currentUser?.uid}/`).on("value", (res) => {
+        firebase.database().ref(`Users/${user?.role}/${firebase.auth().currentUser?.uid}/`).on("value", (res) => {
           dispatch(currentUserAction(res.val()))
           dispatch(isLoadingAction(false))
         })
@@ -64,6 +65,7 @@ function App() {
 
 
             <Route path="/test" ><Test /></Route>
+            {(currentUser?.uid) && <Route path="/dashboard/vacancies" ><Vacancies /></Route>}
           </Switch>
 
 

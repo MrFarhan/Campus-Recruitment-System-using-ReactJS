@@ -9,7 +9,7 @@ import firebase from "firebase"
 export const Signup = () => {
     var today = new Date().toISOString()
 
-    
+
     let history = useHistory()
     const [signuperror, setSignuperror] = React.useState()
 
@@ -55,14 +55,27 @@ export const Signup = () => {
 
         firebase.auth().createUserWithEmailAndPassword(values.email, values.password).then((res) => {
             let UID = firebase.auth().currentUser?.uid
-            firebase.database().ref('Users/' + UID).set({
-                fullName: values.fullName,
-                email: values.email,
-                role: values.radioType,
-                uid: UID,
-                accountCreatedOn: today
-            })
-            history.push("/")
+            console.log(values, "values are ")
+            if (values?.radioType === "Company") {
+                firebase.database().ref('Users/Companies/' + UID).set({
+                    fullName: values.fullName,
+                    email: values.email,
+                    role: values.radioType,
+                    uid: UID,
+                    accountCreatedOn: today
+                })
+                history.push("/")
+            } else if (values?.radioType === "Student") {
+                firebase.database().ref('Users/Students/' + UID).set({
+                    fullName: values.fullName,
+                    email: values.email,
+                    role: values.radioType,
+                    uid: UID,
+                    accountCreatedOn: today
+                })
+                history.push("/")
+            } else console.log("Un-known Role / Category selected")
+
 
         }).catch(function (error) {
             // Handle Errors here.
