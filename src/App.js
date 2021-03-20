@@ -7,14 +7,15 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { Test } from './Test';
 import { CompanyDashboard } from './Pages/Company/Dashboard/companyDashboard';
-import { StudentDashboard } from './Pages/Student/StudentDashboard';
+import { StudentDashboard } from './Pages/Student/Dashboard/StudentDashboard';
 import { AdminDashboard } from './Pages/Admin/AdminDashboard';
 import { MainProfile } from './Pages/Profile/MainProfile';
 import firebase from "firebase"
-import { currentUserAction, isLoadingAction } from './Redux/Actions';
+import { allJobsAction, allUsersAction, currentUserAction, isLoadingAction } from './Redux/Actions';
 import { Header } from "./Components/Header";
 import { Loader } from "./Components/Loader";
 import { Vacancies } from "./Pages/Company/Vacancies/Vacancies";
+import { Companies } from "./Pages/Student/Companies/Companies";
 
 function App() {
   let history = useHistory()
@@ -22,13 +23,13 @@ function App() {
   const loading = state?.isLoading
   const currentUser = state?.currentUser
   let dispatch = useDispatch()
-  console.log("currentUser", currentUser)
+  // console.log("currentUser", currentUser)
 
   useEffect(() => {
     firebase.auth().onAuthStateChanged(function (user) {
       if (user) {
         // User is signed in.
-        firebase.database().ref(`Users/${user?.role}/${firebase.auth().currentUser?.uid}/`).on("value", (res) => {
+        firebase.database().ref(`Users/${firebase.auth().currentUser?.uid}/`).on("value", (res) => {
           dispatch(currentUserAction(res.val()))
           dispatch(isLoadingAction(false))
         })
@@ -41,9 +42,37 @@ function App() {
 
   }, [])
 
+  useEffect(() => {
+    firebase.auth().onAuthStateChanged(function (user) {
+      if (user) {
+        // User is signed in.
+        firebase.database().ref(`Users/`).on("value", (res) => {
+          dispatch(allUsersAction(res.val()))
+        })
+      } else {
+        // No user is signed in.
+        console.log("All users else triggered ")
+      }
+    });
 
-  let studentHeaderData = [{ "Text": "Dashboard", "route": "/dashboard" }, { "Text": "Applied Jobs", "route": "/dashboard/applied_jobs" }, { "Text": "Profile", "route": "/dashboard/Profile" }]
-  let companyHeaderData = [{ "Text": "Dashboard", "route": "/dashboard" }, { "Text": " My Vacancies ", "route": "/dashboard/vacancies" }, { "Text": " Applied Candidates ", "route": "/dashboard/applied_job" }, { "Text": " Profile ", "route": "/dashboard/profile" }]
+  }, [])
+
+  useEffect(() => {
+    firebase.auth().onAuthStateChanged(function (user) {
+      if (user) {
+        // User is signed in.
+        firebase.database().ref(`Jobs/`).on("value", (res) => {
+          dispatch(allJobsAction(res.val()))
+        })
+      } else {
+        // No user is signed in.
+        console.log("All users jobs else triggered ")
+      }
+    });
+
+  }, [])
+  let studentHeaderData = [{ "Text": "Dashboard", "route": "/dashboard" }, , { "Text": "Companies", "route": "/dashboard/companies" }, { "Text": "Applied Jobs", "route": "/dashboard/applied_jobs" }, { "Text": "Profile", "route": "/dashboard/Profile" }]
+  let companyHeaderData = [{ "Text": "Dashboard", "route": "/dashboard" }, { "Text": " My Posts ", "route": "/dashboard/vacancies" }, { "Text": " Applied Candidates ", "route": "/dashboard/applied_job" }, { "Text": " Profile ", "route": "/dashboard/profile" }]
 
   const roleCond = (param) => currentUser?.role === param;
 
@@ -66,6 +95,7 @@ function App() {
 
             <Route path="/test" ><Test /></Route>
             {(currentUser?.uid) && <Route path="/dashboard/vacancies" ><Vacancies /></Route>}
+            {(currentUser?.uid) && <Route path="/dashboard/companies" ><Companies /></Route>}
           </Switch>
 
 

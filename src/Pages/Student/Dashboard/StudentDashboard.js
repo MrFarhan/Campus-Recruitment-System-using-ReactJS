@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react'
 // import { useHistory } from 'react-router-dom'
-import { Header } from '../../Components/Header';
-import { Body } from './Body';
+import { Header } from '../../../Components/Header';
+// import { Body } from './Body';
 import firebase from "firebase"
-import { currentUserAction, isLoadingAction } from '../../Redux/Actions';
+import { currentUserAction, isLoadingAction } from '../../../Redux/Actions';
 import { useDispatch, useSelector } from 'react-redux';
-import { Loader } from '../../Components/Loader';
+import { Loader } from '../../../Components/Loader';
 import { useHistory } from 'react-router';
 export const StudentDashboard = () => {
     const state = useSelector(state => state)

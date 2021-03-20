@@ -3,8 +3,7 @@ import { Body } from '../Body'
 
 export const Vacancies = () => {
     return (
-        <div>
-            Vacancies here
+        <div style={{width:"100%",display:"flex",flexWrap:"wrap"}} >
             <Body />
         </div>
     )

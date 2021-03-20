@@ -18,7 +18,7 @@ export const CompanyDashboard = () => {
         firebase.auth().onAuthStateChanged(function (user) {
             if (user) {
                 const useruid = user.uid
-                firebase.database().ref(`Users/${user?.role}/${useruid}/`).on("value", (res) => {
+                firebase.database().ref(`Users/${useruid}/`).on("value", (res) => {
                     dispatch(currentUserAction(res.val()))
                     dispatch(isLoadingAction(false))
                 })
@@ -28,9 +28,10 @@ export const CompanyDashboard = () => {
         });
         // eslint-disable-next-line
     }, [])
+
     if (loading) <Loader />
-    console.log("")
-    if (!loading && !currentUser) history.push('/')
+    // console.log("")
+    // if (!loading && !currentUser?.uid) history.push('/')
 
     return (<>
         <div className="dashboard" style={{ backgroundColor: "red" }}>

@@ -1,4 +1,5 @@
 import React from 'react'
+import { Cards } from './Components/Cards'
 
 export const Test = () => {
 
@@ -8,6 +9,9 @@ export const Test = () => {
     return (
         <div>
             This is test component
+            <Cards/>
+            <Cards/>
+            <Cards/>    
         </div>
     )
 }

@@ -16,6 +16,7 @@ export const Login = () => {
     useEffect(() => {
         firebase.auth().onAuthStateChanged(function (user) {
             if (user) {
+                console.log("user is signedin in login page")
                 // User is signed in.
                 firebase.database().ref(`Users/${firebase.auth().currentUser?.uid}/`).on("value", (res) => {
                     dispatch(currentUserAction(res.val()))
@@ -25,7 +26,7 @@ export const Login = () => {
             } else {
                 // No user is signed in.
                 // <Redirect to="/" />
-                history.push("/")
+                // history.push("/")
                 dispatch(isLoadingAction(false))
             }
         });
@@ -51,6 +52,7 @@ export const Login = () => {
     const currentUser = state?.currentUser
     const loading = state?.isLoading
     console.log("Loading is ", loading)
+    console.log("current state in login is ", state)
     const formik = useFormik({
         initialValues: {
             email: '',
@@ -86,7 +88,11 @@ export const Login = () => {
                     if (userData && userData?.role === "Company" || userData.role === "Student" || userData.role === "Admin") {
                         history.push("/dashboard")
                     }
-                    else history.push("/")
+                    else {
+                        history.push("/")
+                        dispatch(currentUserAction(false))
+
+                    }
 
                 })
             }).catch(function (error) {
@@ -111,6 +117,7 @@ export const Login = () => {
 
     if (loading) <Loader />
 
+    console.log("!loading && !currentUser?.uid)", !loading && !currentUser?.uid)
     return (
         <Form onSubmit={formik.handleSubmit} >
             <h1 className="heading">Campus Recruitment System from App JS</h1><br />
