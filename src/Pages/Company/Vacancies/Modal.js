@@ -70,7 +70,8 @@ export const MyModal = () => {
                 lastDate: values.lastDate,
                 uid: UID,
                 lastDateToApply: today,
-                postedBy:state?.currentUser?.fullName,
+                postedBy: state?.currentUser?.fullName,
+                jobUUID: Date.now()
             })
             setModalShow(false)
         }

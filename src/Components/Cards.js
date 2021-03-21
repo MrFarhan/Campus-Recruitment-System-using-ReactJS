@@ -1,10 +1,10 @@
 import React from 'react'
 import { Card, CardColumns, Col, Row, Container } from 'react-bootstrap'
 
-export const Cards = ({ title, text, key2, value2, key3, value3, key4, value4, email, link, linkText, linkText2, footerKey, footerValue }) => {
+export const Cards = ({ title, text, key2, value2, key3, value3, key4, value4, email, link, linkText, linkText2, footerKey, footerValue, clickHandler }) => {
     return (
         // <span>
-        <div>
+        <div >
             <Card style={{ minWidth: "18em", height: "100%", display: "flex", justifyContent: "space-between" }}>
                 <Card.Body style={{ minHeight: "20em" }}>
                     <Card.Title>{title}</Card.Title>
@@ -21,7 +21,7 @@ export const Cards = ({ title, text, key2, value2, key3, value3, key4, value4, e
                     <Card.Text>
                         {key4} {value4}
                     </Card.Text>
-                    <Card.Link href="#">{linkText}</Card.Link>
+                    <Card.Link onClick={clickHandler}>{linkText}</Card.Link>
                     <Card.Link href="#">{linkText2}</Card.Link>
                 </Card.Body>
                 <Card.Footer>

@@ -16,6 +16,8 @@ import { Header } from "./Components/Header";
 import { Loader } from "./Components/Loader";
 import { Vacancies } from "./Pages/Company/Vacancies/Vacancies";
 import { Companies } from "./Pages/Student/Companies/Companies";
+import { All_Jobs } from "./Pages/Student/All_Jobs/All_Jobs";
+import { AppliedJobs } from "./Pages/Student/Applied_Jobs/AppliedJobs";
 
 function App() {
   let history = useHistory()
@@ -71,8 +73,8 @@ function App() {
     });
 
   }, [])
-  let studentHeaderData = [{ "Text": "Dashboard", "route": "/dashboard" }, , { "Text": "Companies", "route": "/dashboard/companies" }, { "Text": "Applied Jobs", "route": "/dashboard/applied_jobs" }, { "Text": "Profile", "route": "/dashboard/Profile" }]
-  let companyHeaderData = [{ "Text": "Dashboard", "route": "/dashboard" }, { "Text": " My Posts ", "route": "/dashboard/vacancies" }, { "Text": " Applied Candidates ", "route": "/dashboard/applied_job" }, { "Text": " Profile ", "route": "/dashboard/profile" }]
+  let studentHeaderData = [{ "Text": "Dashboard", "route": "/dashboard" }, , { "Text": "Companies", "route": "/dashboard/companies" }, { "Text": "All Jobs", "route": "/dashboard/all_jobs" }, { "Text": "Applied Jobs", "route": "/dashboard/appliedJobs" }, { "Text": "Profile", "route": "/dashboard/Profile" }]
+  let companyHeaderData = [{ "Text": "Dashboard", "route": "/dashboard" }, { "Text": " My Posts ", "route": "/dashboard/vacancies" }, { "Text": " Applied Candidates ", "route": "/dashboard/applied_candidates" }, { "Text": " Profile ", "route": "/dashboard/profile" }]
 
   const roleCond = (param) => currentUser?.role === param;
 
@@ -96,6 +98,9 @@ function App() {
             <Route path="/test" ><Test /></Route>
             {(currentUser?.uid) && <Route path="/dashboard/vacancies" ><Vacancies /></Route>}
             {(currentUser?.uid) && <Route path="/dashboard/companies" ><Companies /></Route>}
+            {(currentUser?.uid) && <Route path="/dashboard/all_jobs" ><All_Jobs /></Route>}
+            {(currentUser?.uid) && <Route path="/dashboard/appliedJobs" ><AppliedJobs /></Route>}
+
           </Switch>
 
 

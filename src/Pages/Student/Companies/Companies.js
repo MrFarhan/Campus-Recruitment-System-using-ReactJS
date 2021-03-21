@@ -24,7 +24,7 @@ export const Companies = () => {
         <h3>List of companies here</h3>
         <div style={{ width: "100%", display: "flex", justifyContent: "space-around" }}>
             {companies.map((item, index) => {
-                return <Cards title={item?.fullName} text={item?.profile} linkText="Apply Now" email={item?.email} />
+                return <Cards title={item?.fullName} text={item?.profile} email={item?.email} />
             })}
         </div>
     </>
