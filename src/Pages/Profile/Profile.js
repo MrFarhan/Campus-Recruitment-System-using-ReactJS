@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Form, Button, InputGroup, FormControl } from 'react-bootstrap';
+import { Form, Button } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
 import firebase from "firebase"
 import { Loader } from '../../Components/Loader';
@@ -30,6 +30,7 @@ export const Profile = (props) => {
 
             }
         });
+        // eslint-disable-next-line
     }, [])
     console.log("Loading in profile is ", loading)
 
@@ -40,9 +41,8 @@ export const Profile = (props) => {
 
     return (<Form onSubmit={(e) => e.preventDefault()}>
 
-        {/* {console.log("props . data is ", props.data?.fields)} */}
-        { Array.from(props?.data?.fields).map((item, index) => {
-            console.log("props are ", props["data"])
+
+        {Array.from(props?.data?.fields).map((item, index) => {
             if (item?.type === "text") {
                 return (
                     <Form.Group>
@@ -62,6 +62,7 @@ export const Profile = (props) => {
                         <Form.Control id={item?.id} as="textarea" rows={3} placeholder={item?.placeholder} value={item?.value} onChange={(e) => item?.changeHandler(e)} />
                     </Form.Group>)
             }
+            return console.log("props are ", props["data"])
         })}
 
         <Form.Group>

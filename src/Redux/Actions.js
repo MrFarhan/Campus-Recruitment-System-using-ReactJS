@@ -1,4 +1,4 @@
-import { ALL_USERS, CURRENT_USER, IS_LOADING, ALL_JOBS } from "./ActionTypes"
+import { ALL_USERS, CURRENT_USER, IS_LOADING, ALL_JOBS, APPLIED_JOBS } from "./ActionTypes"
 
 export const currentUserAction = (payload) => ({
     type: CURRENT_USER,
@@ -17,5 +17,10 @@ export const allUsersAction = (payload) => ({
 
 export const allJobsAction = (payload) => ({
     type: ALL_JOBS,
+    payload
+})
+
+export const appliedJobsAction = (payload) => ({
+    type: APPLIED_JOBS,
     payload
 })

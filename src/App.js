@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react"
+import React, { useEffect } from "react"
 import './App.css';
 import { Signup } from './Pages/Signup/Signup';
-import { BrowserRouter as Router, Redirect, Route, Switch, useHistory } from "react-router-dom"
+import { BrowserRouter as Router, Redirect, Route, Switch } from "react-router-dom"
 import { Login } from './Pages/Login/Login';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useDispatch, useSelector } from 'react-redux';
@@ -16,11 +16,10 @@ import { Header } from "./Components/Header";
 import { Loader } from "./Components/Loader";
 import { Vacancies } from "./Pages/Company/Vacancies/Vacancies";
 import { Companies } from "./Pages/Student/Companies/Companies";
-import { All_Jobs } from "./Pages/Student/All_Jobs/All_Jobs";
+import { AllJobs } from "./Pages/Student/AllJobs/AllJobs";
 import { AppliedJobs } from "./Pages/Student/Applied_Jobs/AppliedJobs";
 
 function App() {
-  let history = useHistory()
   const state = useSelector(state => state)
   const loading = state?.isLoading
   const currentUser = state?.currentUser
@@ -41,7 +40,7 @@ function App() {
         dispatch(isLoadingAction(false))
       }
     });
-
+// eslint-disable-next-line
   }, [])
 
   useEffect(() => {
@@ -56,7 +55,7 @@ function App() {
         console.log("All users else triggered ")
       }
     });
-
+// eslint-disable-next-line
   }, [])
 
   useEffect(() => {
@@ -71,9 +70,9 @@ function App() {
         console.log("All users jobs else triggered ")
       }
     });
-
+// eslint-disable-next-line
   }, [])
-  let studentHeaderData = [{ "Text": "Dashboard", "route": "/dashboard" }, , { "Text": "Companies", "route": "/dashboard/companies" }, { "Text": "All Jobs", "route": "/dashboard/all_jobs" }, { "Text": "Applied Jobs", "route": "/dashboard/appliedJobs" }, { "Text": "Profile", "route": "/dashboard/Profile" }]
+  let studentHeaderData = [{ "Text": "Dashboard", "route": "/dashboard" },  { "Text": "Companies", "route": "/dashboard/companies" }, { "Text": "All Jobs", "route": "/dashboard/allJobs" }, { "Text": "Applied Jobs", "route": "/dashboard/appliedJobs" }, { "Text": "Profile", "route": "/dashboard/Profile" }]
   let companyHeaderData = [{ "Text": "Dashboard", "route": "/dashboard" }, { "Text": " My Posts ", "route": "/dashboard/vacancies" }, { "Text": " Applied Candidates ", "route": "/dashboard/applied_candidates" }, { "Text": " Profile ", "route": "/dashboard/profile" }]
 
   const roleCond = (param) => currentUser?.role === param;
@@ -98,7 +97,7 @@ function App() {
             <Route path="/test" ><Test /></Route>
             {(currentUser?.uid) && <Route path="/dashboard/vacancies" ><Vacancies /></Route>}
             {(currentUser?.uid) && <Route path="/dashboard/companies" ><Companies /></Route>}
-            {(currentUser?.uid) && <Route path="/dashboard/all_jobs" ><All_Jobs /></Route>}
+            {(currentUser?.uid) && <Route path="/dashboard/allJobs" ><AllJobs /></Route>}
             {(currentUser?.uid) && <Route path="/dashboard/appliedJobs" ><AppliedJobs /></Route>}
 
           </Switch>

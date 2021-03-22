@@ -1,18 +1,12 @@
 import React, { useEffect } from 'react'
-// import { useHistory } from 'react-router-dom'
-import { Header } from '../../../Components/Header';
-// import { Body } from './Body';
 import firebase from "firebase"
 import { currentUserAction, isLoadingAction } from '../../../Redux/Actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { Loader } from '../../../Components/Loader';
-import { useHistory } from 'react-router';
 export const StudentDashboard = () => {
     const state = useSelector(state => state)
-    const currentUser = state?.currentUser
     const loading = state.isLoading
     let dispatch = useDispatch()
-    let history = useHistory()
 
     useEffect(() => {
         firebase.auth().onAuthStateChanged(function (user) {

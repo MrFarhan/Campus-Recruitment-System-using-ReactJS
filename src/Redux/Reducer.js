@@ -1,10 +1,11 @@
-import { ALL_USERS, CURRENT_USER, IS_LOADING, ALL_JOBS } from './ActionTypes'
+import { ALL_USERS, CURRENT_USER, IS_LOADING, ALL_JOBS, APPLIED_JOBS } from './ActionTypes'
 
 export const initialState = {
     currentUser: {},
     isLoading: true,
     allUsers: {},
-    allJobs: []
+    allJobs: [],
+    appliedJobs: []
 }
 
 export default function Reducer(state = initialState, { type, payload }) {
@@ -28,6 +29,11 @@ export default function Reducer(state = initialState, { type, payload }) {
             return {
                 ...state,
                 allJobs: payload
+            }
+        case APPLIED_JOBS:
+            return {
+                ...state,
+                appliedJobs: [...state.appliedJobs, payload]
             }
         default:
             return state

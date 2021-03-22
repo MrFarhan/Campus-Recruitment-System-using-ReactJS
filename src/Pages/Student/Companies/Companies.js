@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useSelector } from 'react-redux'
 import { Cards } from '../../../Components/Cards'
 
@@ -6,18 +6,13 @@ export const Companies = () => {
 
     const state = useSelector(state => state)
     const allUsers = state?.allUsers
-    // let [companies, setCompanies] = useState([])
     let companies = []
     console.log("companies comp", allUsers)
-
-    // allUsers && Array.from(state?.allUsers).map((item, index) => {
-    //     return console.log("item is ", item)
-    // })
+    // eslint-disable-next-line
     Object.values(allUsers).map((item, index) => {
         if (item?.role === "Company") {
             companies.push(item)
         }
-        // console.log("item is ", item?.role)
     })
     console.log("companes are ", companies)
     return (<>

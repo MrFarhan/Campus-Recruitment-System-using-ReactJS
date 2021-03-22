@@ -2,8 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+// eslint-disable-next-line
 import * as firebase from "./firebase.js";
-import { Provider, useDispatch } from 'react-redux';
+import { Provider } from 'react-redux';
 import { store } from './Redux/Store'
 
 ReactDOM.render(

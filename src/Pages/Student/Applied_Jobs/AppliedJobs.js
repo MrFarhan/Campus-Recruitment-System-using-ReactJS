@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { Cards } from '../../../Components/Cards'
+// eslint-disable-next-line
 import firebase from "firebase"
 
 
@@ -9,33 +10,26 @@ export const AppliedJobs = () => {
     const state = useSelector(state => state)
     let myJob = []
     const allJobs = useSelector(state => state?.allJobs)
-
+    // eslint-disable-next-line
     useEffect(() => {
-        Object.values(state.currentUser.Applied_Jobs).map((item, index) => {
-            console.log("Applied jobs", item.job.jobUUID)
+        // eslint-disable-next-line
+        state && state.currentUser && state.currentUser.Applied_Jobs && Object.values(state.currentUser.Applied_Jobs).map((item, index) => {
             myJob.push(item?.job?.jobUUID)
             setMyJobs(myJob)
         })
+        // eslint-disable-next-line
     }, [])
 
 
-    {
-        Array.isArray(allJobs) && allJobs?.map((item, index) => {
-            return console.log("all jobs uid", item?.jobUUID)
-        })
-    }
+    // {
+    //     Array.isArray(allJobs) && allJobs?.map((item, index) => {
+    //         return console.log("all jobs uid", item?.jobUUID)
+    //     })
+    // }
 
 
-    const filteredJobs = allJobs.filter(job => myJobs?.indexOf(job?.jobUUID) !== -1)
+    const filteredJobs = myJobs ? allJobs.filter(job => myJobs?.indexOf(job?.jobUUID) !== -1) : null
 
-
-    const Apply = (job) => {
-        console.log("applied ", job?.jobUUID)
-        firebase.database().ref(`Users/${firebase.auth().currentUser?.uid}/Applied_Jobs/${job?.jobUUID}`).update({
-            job: job
-        })
-
-    }
 
     return (
         <>
@@ -43,7 +37,7 @@ export const AppliedJobs = () => {
             <div style={{ width: "100%", display: "flex" }}>
                 {
                     filteredJobs?.map((item, index) => {
-                        return <Cards title={item?.jobTitle} text={item?.jobDescription} key2="Minimum GPA Required" value2={item?.min_gpa} key3="Tentative Salary" value3={item?.salary}   email={item?.email} key4="Posted By : " value4={item?.postedBy} footerKey="Last date to apply is" footerValue={item?.lastDateToApply} />
+                        return <Cards title={item?.jobTitle} text={item?.jobDescription} key2="Minimum GPA Required" value2={item?.min_gpa} key3="Tentative Salary" value3={item?.salary} email={item?.email} key4="Posted By : " value4={item?.postedBy} footerKey="Last date to apply is" footerValue={item?.lastDateToApply} />
                     })
                 }
             </div>

@@ -22,5 +22,5 @@ export const MainProfile = () => {
     const CompanyData = { fields: [{ "placeholder": "Full Name", "type": "text", "id": "fullName", "value": `${currentUser?.fullName}` }, { placeholder: "Email", type: "email", value: `${currentUser?.email}` }, { placeholder: "Brief Profile", type: "textarea", value: `${profile}`, changeHandler: onchange = (e) => setProfile(e.target.value) }], onsubmit: (e) => Submit(e) };
     const StudentData = { fields: [{ "placeholder": "Full Name", "type": "text", "id": "fullName", "value": `${currentUser?.fullName}` }, { placeholder: "Email", type: "email", value: `${currentUser?.email}` }, { placeholder: "Brief Profile", type: "textarea", value: `${profile}`, changeHandler: onchange = (e) => setProfile(e.target.value) }], onsubmit: (e) => Submit(e) };
 
-    return (!currentUser || currentUser && currentUser["role"] === "Company" ? <Profile data={CompanyData} /> : currentUser["role"] === "Student" ? <Profile data={StudentData} /> : alert("chal bhag BC login kar k aa"))
+    return ((!currentUser || currentUser) && currentUser["role"] === "Company" ? <Profile data={CompanyData} /> : currentUser["role"] === "Student" ? <Profile data={StudentData} /> : alert("chal bhag BC login kar k aa"))
 }

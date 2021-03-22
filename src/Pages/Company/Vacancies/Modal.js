@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { Button, Container, Modal, Form } from 'react-bootstrap';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
@@ -6,7 +6,8 @@ import firebase from "firebase";
 import { useSelector } from 'react-redux';
 
 export const MyModal = () => {
-    const [DBLength, setDBLength] = useState(0)
+    const [DBLength, setDBLength] = React.useState(0)
+
     const state = useSelector(state => state)
     // console.log("state is", state?.currentUser?.fullName)
     let UID = firebase.auth().currentUser?.uid
@@ -15,7 +16,7 @@ export const MyModal = () => {
     //     console.log("Current company job ",data?.length )
     // })
 
-    useEffect(() => {
+    React.useEffect(() => {
         firebase.database().ref(`Jobs/`).on("value", (res) => {
             if (res.val()) {
                 const data = Object.values(res.val())
@@ -26,7 +27,7 @@ export const MyModal = () => {
         })
     }, [])
 
-    console.log("db lenght is ", DBLength)
+    // console.log("db lenght is ", DBLength)
     const [modalShow, setModalShow] = React.useState(false);
     var today = new Date().toDateString()
 
@@ -61,7 +62,8 @@ export const MyModal = () => {
 
         });
         const PostJob = (values) => {
-
+            let jobUUID = Date.now()
+            console.log("JOb uuid is",jobUUID)
             firebase.database().ref(`Jobs/${DBLength}`).update({
                 jobTitle: values.jobTitle,
                 jobDescription: values.jobDescription,
@@ -71,7 +73,7 @@ export const MyModal = () => {
                 uid: UID,
                 lastDateToApply: today,
                 postedBy: state?.currentUser?.fullName,
-                jobUUID: Date.now()
+                jobUUID: jobUUID
             })
             setModalShow(false)
         }

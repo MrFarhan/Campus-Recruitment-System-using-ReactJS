@@ -9,15 +9,12 @@ export const Test = () => {
     return (
         <div>
             This is test component
-            <Cards/>
-            <Cards/>
-            <Cards/>    
+            <Cards/>  
         </div>
     )
 }
 
 
-{/* <Spinner animation="border" /> */ }
 
 
 

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { Button, Form, InputGroup } from 'react-bootstrap'
-import { Redirect, useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import "./Login.css"
@@ -24,26 +24,11 @@ export const Login = () => {
                     history.push("/dashboard")
                 })
             } else {
-                // No user is signed in.
-                // <Redirect to="/" />
-                // history.push("/")
                 dispatch(isLoadingAction(false))
             }
         });
-
+// eslint-disable-next-line
     }, [])
-    // firebase.database().ref(`Users/${firebase.auth().currentUser?.uid}/`).on("value", (res) => {
-    //     let userData = res.val()
-    //     console.log(userData, "user data is in login ")
-    //     console.log("res.val is ", res.val())
-    //     dispatch(currentUserAction(res.val()))
-    //     dispatch(isLoadingAction(false))
-    //     if (userData && userData?.role === "Company" || userData.role === "Student" || userData.role === "Admin") {
-    //         history.push("/dashboard/profile")
-    //     }
-    //     else alert("Role ???")
-
-    // })
 
     let history = useHistory()
     let dispatch = useDispatch()
@@ -85,6 +70,7 @@ export const Login = () => {
                     console.log("res.val is ", res.val())
                     dispatch(currentUserAction(res.val()))
                     dispatch(isLoadingAction(false))
+                    // eslint-disable-next-line
                     if (userData && userData?.role === "Company" || userData.role === "Student" || userData.role === "Admin") {
                         history.push("/dashboard")
                     }
