@@ -6,7 +6,7 @@ import firebase from "firebase";
 import { useSelector } from 'react-redux';
 
 export const MyModal = () => {
-    const [DBLength, setDBLength] = React.useState(0)
+    // const [DBLength, setDBLength] = React.useState(0)
 
     const state = useSelector(state => state)
     // console.log("state is", state?.currentUser?.fullName)
@@ -16,16 +16,16 @@ export const MyModal = () => {
     //     console.log("Current company job ",data?.length )
     // })
 
-    React.useEffect(() => {
-        firebase.database().ref(`Jobs/`).on("value", (res) => {
-            if (res.val()) {
-                const data = Object.values(res.val())
-                console.log("Current company job ", data?.length)
-                let lengt = data?.length || 0;
-                setDBLength(lengt)
-            } else setDBLength(0)
-        })
-    }, [])
+    // React.useEffect(() => {
+    //     firebase.database().ref(`Jobs/`).on("value", (res) => {
+    //         if (res.val()) {
+    //             const data = Object.values(res.val())
+    //             console.log("Current company job ", data?.length)
+    //             let lengt = data?.length || 0;
+    //             setDBLength(lengt)
+    //         } else setDBLength(0)
+    //     })
+    // }, [])
 
     // console.log("db lenght is ", DBLength)
     const [modalShow, setModalShow] = React.useState(false);
@@ -62,9 +62,9 @@ export const MyModal = () => {
 
         });
         const PostJob = (values) => {
-            let jobUUID = Date.now()
+            const jobUUID = Date.now()
             console.log("JOb uuid is",jobUUID)
-            firebase.database().ref(`Jobs/${DBLength}`).update({
+            firebase.database().ref(`Jobs/${jobUUID}`).update({
                 jobTitle: values.jobTitle,
                 jobDescription: values.jobDescription,
                 min_gpa: values.min_gpa,

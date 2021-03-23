@@ -4,8 +4,8 @@ import { Card} from 'react-bootstrap'
 export const Cards = ({ title, text, key2, value2, key3, value3, key4, value4, email, link, linkText, linkText2, footerKey, footerValue, clickHandler }) => {
     return (
         // <span>
-        <div >
-            <Card style={{ minWidth: "18em", height: "100%", display: "flex", justifyContent: "space-between" }}>
+        <div style={{width:"100%"}}>
+            <Card style={{ width: "18em", height: "100%", display: "flex", justifyContent: "space-between" }}>
                 <Card.Body style={{ minHeight: "20em" }}>
                     <Card.Title>{title}</Card.Title>
                     <Card.Subtitle className="mb-2 text-muted">{email}</Card.Subtitle>

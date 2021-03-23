@@ -8,21 +8,27 @@ export const Body = () => {
     const allJobs = state?.allJobs
     const currentUserUid = state?.currentUser?.uid
 
-    const result = Array.isArray(allJobs) && allJobs?.filter(item => item?.uid === currentUserUid)
-    console.log("all jobs are ", allJobs)
+    // const result = allJobs && Array.isArray(allJobs) && allJobs?.filter(item => item?.uid === currentUserUid)
+
+
     console.log("current user uid ", currentUserUid)
-    console.log("result is ", result)
+    // console.log("result is ", result)
+
+    const DeleteJob = () => {
+        console.log("job delete clicked")
+    }
     return (
-        <div>
+        <div style={{ width: "100%" }}>
             <MyModal />
             <h3>Vacencies here</h3>
-            <div style={{ display: "flex" }} >
-                {
-                    result?.map((item, index) => {
-                        return <Cards title={item?.jobTitle} text={item?.jobDescription} key2="Minimum GPA Required" value2={item?.min_gpa} key3="Tentative Salary" value3={item?.salary} linkText="Apply Now" email={item?.email} key4="Posted By : " value4={item?.postedBy} footerKey="Last date to apply is" footerValue={item?.lastDateToApply} />
-                    })
-                }
-
+            <div style={{ width: "100%", display: "flex" }} >
+                
+                {Object.entries(allJobs).map((item, index) => {
+                    
+                    if (item[1].uid === currentUserUid) {
+                        return <Cards title={item[1].jobTitle} text={item[1].jobDescription} key2="Minimum GPA Required" value2={item[1].min_gpa} key3="Tentative Salary" value3={item[1].salary} linkText="Delete" clickHandler={(item) => DeleteJob(item[1] && item[1].uid)} email={item[1].email} footerKey="Last date to apply is" footerValue={item[1].lastDateToApply} />
+                    }
+                })}
             </div>
         </div>
 
