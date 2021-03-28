@@ -27,7 +27,7 @@ export const Login = () => {
                 dispatch(isLoadingAction(false))
             }
         });
-// eslint-disable-next-line
+        // eslint-disable-next-line
     }, [])
 
     let history = useHistory()
@@ -36,8 +36,6 @@ export const Login = () => {
     const state = useSelector(state => state)
     const currentUser = state?.currentUser
     const loading = state?.isLoading
-    console.log("Loading is ", loading)
-    console.log("current state in login is ", state)
     const formik = useFormik({
         initialValues: {
             email: '',
@@ -65,20 +63,9 @@ export const Login = () => {
         firebase.auth().signInWithEmailAndPassword(email, pass)
             .then(() => {
                 firebase.database().ref(`Users/${firebase.auth().currentUser?.uid}/`).on("value", (res) => {
-                    let userData = res.val()
-                    console.log(userData, "user data is in login ")
-                    console.log("res.val is ", res.val())
                     dispatch(currentUserAction(res.val()))
                     dispatch(isLoadingAction(false))
-                    // eslint-disable-next-line
-                    if (userData && userData?.role === "Company" || userData.role === "Student" || userData.role === "Admin") {
-                        history.push("/dashboard")
-                    }
-                    else {
-                        history.push("/")
-                        dispatch(currentUserAction(false))
-
-                    }
+                    history.push("/dashboard")
 
                 })
             }).catch(function (error) {
@@ -102,8 +89,7 @@ export const Login = () => {
 
 
     if (loading) <Loader />
-
-    console.log("!loading && !currentUser?.uid)", !loading && !currentUser?.uid)
+    { console.log("login compoent redered") }
     return (
         <Form onSubmit={formik.handleSubmit} >
             <h1 className="heading">Campus Recruitment System from App JS</h1><br />

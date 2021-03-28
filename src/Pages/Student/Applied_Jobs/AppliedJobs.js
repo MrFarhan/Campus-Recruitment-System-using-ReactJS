@@ -24,7 +24,7 @@ export const AppliedJobs = () => {
     }, [])
 
 
-    const filteredJobs = Object.values(allJobs).filter(job => myJobs?.indexOf(String(job?.jobUUID)) !== -1)
+    const filteredJobs = allJobs && myJobs && Object.values(allJobs).filter(job => myJobs?.indexOf(String(job?.jobUUID)) !== -1)
     console.log("filtered jobs are ", filteredJobs)
     return (
         <>
@@ -33,7 +33,7 @@ export const AppliedJobs = () => {
 
 
                 {filteredJobs?.map((item, index) => {
-                    return <Cards title={item.jobTitle} text={item?.jobDescription} key2="Minimum GPA Required" value2={item?.min_gpa} key3="Tentative Salary" value3={item?.salary} email={item?.email} key4="Posted By : " value4={item?.postedBy} footerKey="Last date to apply is" footerValue={item?.lastDateToApply} />
+                    return <Cards key={index} title={item.jobTitle} text={item?.jobDescription} key2="Minimum GPA Required" value2={item?.min_gpa} key3="Tentative Salary" value3={item?.salary} email={item?.email} key4="Posted By : " value4={item?.postedBy} footerKey="Last date to apply is" footerValue={item?.lastDateToApply} />
                 })}
 
             </div>
