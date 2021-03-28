@@ -1,7 +1,7 @@
 import React from 'react'
 import { Card, Form } from 'react-bootstrap'
 
-export const Cards = ({ title, text, key2, value2, key3, value3, key4, value4, email, link, linkText, linkText2, footerKey, footerValue, clickHandler,dropDownValue }) => {
+export const Cards = ({ title, text, key2, value2, key3, value3, key4, value4, email, link, linkText, linkText2, footerKey, footerValue, clickHandler, dropDownValue, dropDownClickHandler }) => {
     return (
         // <span>
         <div style={{ width: "100%" }}>
@@ -26,7 +26,10 @@ export const Cards = ({ title, text, key2, value2, key3, value3, key4, value4, e
 
                     <Form.Group >
                         <select >
-                            <option > {dropDownValue}</option>
+                            {dropDownValue && dropDownValue.map((item, index) => (
+                                <option value={item?.uid}> {item?.fullName}</option>
+
+                            ))}
                         </select>
                     </Form.Group>
                 </Card.Body>
