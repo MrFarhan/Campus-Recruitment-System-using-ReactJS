@@ -6,28 +6,10 @@ import firebase from "firebase";
 import { useSelector } from 'react-redux';
 
 export const MyModal = () => {
-    // const [DBLength, setDBLength] = React.useState(0)
 
     const state = useSelector(state => state)
-    // console.log("state is", state?.currentUser?.fullName)
     let UID = firebase.auth().currentUser?.uid
-    // firebase.database().ref(`Users/${UID}/Jobs`).on("value", (res) => {
-    //     const data = Object.values(res.val())
-    //     console.log("Current company job ",data?.length )
-    // })
 
-    // React.useEffect(() => {
-    //     firebase.database().ref(`Jobs/`).on("value", (res) => {
-    //         if (res.val()) {
-    //             const data = Object.values(res.val())
-    //             console.log("Current company job ", data?.length)
-    //             let lengt = data?.length || 0;
-    //             setDBLength(lengt)
-    //         } else setDBLength(0)
-    //     })
-    // }, [])
-
-    // console.log("db lenght is ", DBLength)
     const [modalShow, setModalShow] = React.useState(false);
     var today = new Date().toDateString()
 
@@ -140,8 +122,6 @@ export const MyModal = () => {
 
     }
 
-
-    // onClick={(e) => PostJob(e)}
     return (
         <>
             <AddVecancyModal show={modalShow} onHide={() => setModalShow(false)} />

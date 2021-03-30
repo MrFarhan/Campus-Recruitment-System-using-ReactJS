@@ -1,7 +1,11 @@
 import React from 'react'
-import { Card, Form } from 'react-bootstrap'
+import { Card, Dropdown, DropdownButton } from 'react-bootstrap'
 
-export const Cards = ({ title, text, key2, value2, key3, value3, key4, value4, email, link, linkText, linkText2, footerKey, footerValue, clickHandler, dropDownValue, dropDownClickHandler }) => {
+export const Cards = ({ title, text, key2, value2, key3, value3, key4, value4, email, linkText, linkText2, footerKey, footerValue, clickHandler, dropDownValue, dropDownClickHandler }) => {
+
+    const ChangeHandler = (e) => {
+        dropDownClickHandler(e)
+    }
     return (
         // <span>
         <div style={{ width: "100%" }}>
@@ -24,14 +28,19 @@ export const Cards = ({ title, text, key2, value2, key3, value3, key4, value4, e
                     <Card.Link onClick={clickHandler}>{linkText}</Card.Link>
                     <Card.Link href="#">{linkText2}</Card.Link>
 
-                    <Form.Group >
-                        <select >
+                    {dropDownValue ?
+                        <DropdownButton variant="secondary"
+                            menuAlign="right"
+                            title="Applied Students"
+                            id="dropdown-menu-align-right"
+                            onSelect={ChangeHandler}
+                        >
                             {dropDownValue && dropDownValue.map((item, index) => (
-                                <option value={item?.uid}> {item?.fullName}</option>
+                                <Dropdown.Item eventKey={item?.uid}>{item?.fullName}</Dropdown.Item>
 
                             ))}
-                        </select>
-                    </Form.Group>
+                        </DropdownButton> : null}
+
                 </Card.Body>
                 <Card.Footer>
                     <small className="text-muted"> {footerKey} {footerValue}</small>

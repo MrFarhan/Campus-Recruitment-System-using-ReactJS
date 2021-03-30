@@ -8,7 +8,6 @@ import { appliedJobsAction } from '../../../Redux/Actions'
 export const AllJobs = () => {
     const state = useSelector(state => state)
     const allJobs = useSelector(state => state?.allJobs)
-    const appliedJobs = useSelector(state => state?.appliedJobs)
     const currentUserUid = state?.currentUser?.uid
 
 
@@ -28,14 +27,6 @@ export const AllJobs = () => {
         // eslint-disable-next-line
     }, [state?.currentUser?.Applied_Jobs])
 
-
-    // if (state && state.currentUser && state.currentUser.Applied_Jobs) {
-    //     // eslint-disable-next-line
-    //     Object.keys(state.currentUser.Applied_Jobs).map((item, index) => {
-    //         myJob.push(item)
-    //         setMyJobs(myJob)
-    //     })
-    // } 
     const Apply = (job) => {
         firebase.database().ref(`Users/${firebase.auth().currentUser?.uid}/Applied_Jobs/${job?.jobUUID}`).update({
             jobUUID: job?.jobUUID
@@ -47,7 +38,6 @@ export const AllJobs = () => {
         dispatch(appliedJobsAction(job?.jobUUID))
     }
 
-    { console.log("all jobs rendering") }
     const filteredJobs = Object.values(allJobs).filter(job => myJobs?.indexOf(String(job?.jobUUID)) === -1)
     console.log("myJobs are ", myJobs, "all Jobs are", allJobs)
 

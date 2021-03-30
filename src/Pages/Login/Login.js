@@ -34,7 +34,6 @@ export const Login = () => {
     let dispatch = useDispatch()
     const [Icon, inputType] = usePasswordToggler()
     const state = useSelector(state => state)
-    const currentUser = state?.currentUser
     const loading = state?.isLoading
     const formik = useFormik({
         initialValues: {
@@ -89,7 +88,6 @@ export const Login = () => {
 
 
     if (loading) <Loader />
-    { console.log("login compoent redered") }
     return (
         <Form onSubmit={formik.handleSubmit} >
             <h1 className="heading">Campus Recruitment System from App JS</h1><br />
