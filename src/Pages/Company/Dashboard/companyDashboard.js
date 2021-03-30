@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-// import { Body } from './Body';
 import firebase from "firebase"
 import { currentUserAction, isLoadingAction } from '../../../Redux/Actions';
 import { Loader } from '../../../Components/Loader';
@@ -25,14 +24,11 @@ export const CompanyDashboard = () => {
     }, [])
 
     if (loading) <Loader />
-    // console.log("")
-    // if (!loading && !currentUser?.uid) history.push('/')
 
     return (<>
-        <div className="dashboard" style={{ backgroundColor: "red" }}>
+        <div className="dashboard" >
             company dashboard here
         </div>
-        {/* <Body /> */}
     </>
     )
 }

@@ -73,7 +73,7 @@ function App() {
 // eslint-disable-next-line
   }, [])
   let studentHeaderData = [{ "Text": "Dashboard", "route": "/dashboard" },  { "Text": "Companies", "route": "/dashboard/companies" }, { "Text": "All Jobs", "route": "/dashboard/allJobs" }, { "Text": "Applied Jobs", "route": "/dashboard/appliedJobs" }, { "Text": "Profile", "route": "/dashboard/Profile" }]
-  let companyHeaderData = [{ "Text": "Dashboard", "route": "/dashboard" }, { "Text": " My Posts ", "route": "/dashboard/vacancies" }, { "Text": " Applied Candidates ", "route": "/dashboard/applied_candidates" }, { "Text": " Profile ", "route": "/dashboard/profile" }]
+  let companyHeaderData = [{ "Text": "Dashboard", "route": "/dashboard" }, { "Text": " My Posts ", "route": "/dashboard/vacancies" }, { "Text": " Profile ", "route": "/dashboard/profile" }]
 
   const roleCond = (param) => currentUser?.role === param;
 
