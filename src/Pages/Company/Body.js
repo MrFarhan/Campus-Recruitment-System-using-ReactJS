@@ -12,11 +12,11 @@ export const Body = () => {
     const currentUserUid = state?.currentUser?.uid
     const allUsers = state?.allUsers
     const [showModal, setShowModal] = React.useState(false)
-    const [appliedStudent,setAppliedStudent] = React.useState()
-    
+    const [appliedStudent, setAppliedStudent] = React.useState()
+
     const DeleteJob = (e) => {
         let jobUUID = e?.jobUUID
-        console.log("job delete clicked",e?.jobUUID)
+        console.log("job delete clicked", e?.jobUUID)
         firebase.database().ref(`Jobs/${jobUUID}`).remove()
     }
 
@@ -36,17 +36,17 @@ export const Body = () => {
 
     return (
         <div style={{ width: "100%" }}>
-            {!!showModal && <ReadOnlyModal data={appliedStudent} onHide={()=>setShowModal(false)} ShowModal={showModal} />}
+            {!!showModal && <ReadOnlyModal data={appliedStudent} onHide={() => setShowModal(false)} ShowModal={showModal} />}
             <MyModal />
             <h3>Vacencies here</h3>
             <div style={{ width: "100%", display: "flex" }} >
 
 
                 {Object.entries(allJobs).map((item, index) => {
-
-                    if (item[1].uid === currentUserUid) {
+                    console.log("item is ", item[1])
+                    if (item[1]?.uid === currentUserUid) {
                         let tempUser = []
-                        Object.values(item[1].AppliedStudents).map((appliedItem, appliedIndex) => {
+                        item[1]?.AppliedStudents && Object.values(item[1]?.AppliedStudents).map((appliedItem, appliedIndex) => {
                             return Object.values(allUsers).forEach((userItem, userIndex) => {
                                 if (userItem?.uid === appliedItem?.currentUserUid) {
                                     tempUser.push(userItem)

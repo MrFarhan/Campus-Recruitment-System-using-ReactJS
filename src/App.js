@@ -24,7 +24,6 @@ function App() {
   const loading = state?.isLoading
   const currentUser = state?.currentUser
   let dispatch = useDispatch()
-  // console.log("currentUser", currentUser)
 
   useEffect(() => {
     firebase.auth().onAuthStateChanged(function (user) {
@@ -90,7 +89,7 @@ function App() {
             <Route exact path="/" >  <Login /></Route>
             <Route path="/signup" ><Signup /></Route>
 
-            {(currentUser?.uid) && <Route exact path="/dashboard" >{roleCond("Student") ? <StudentDashboard /> : roleCond("Company") ? <CompanyDashboard /> : roleCond("Admin") ? <AdminDashboard /> : <></>}</Route>}
+            {<Route exact path="/dashboard" >{roleCond("Student") ? <StudentDashboard /> : roleCond("Company") ? <CompanyDashboard /> : roleCond("Admin") ? <AdminDashboard /> : <></>}</Route>}
             {(roleCond("Student") || roleCond("Company") || roleCond("Admin") ? <Route exact path="/dashboard/profile" ><MainProfile /></Route> : <></>)}
 
 

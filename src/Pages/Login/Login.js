@@ -29,7 +29,6 @@ export const Login = () => {
         });
         // eslint-disable-next-line
     }, [])
-
     let history = useHistory()
     let dispatch = useDispatch()
     const [Icon, inputType] = usePasswordToggler()

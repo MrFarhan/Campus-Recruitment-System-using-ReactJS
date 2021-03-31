@@ -17,7 +17,7 @@ export const StudentDashboard = () => {
                     dispatch(isLoadingAction(false))
                 })
             }
-            else dispatch(isLoadingAction(false))
+            else dispatch(isLoadingAction(true))
 
         });
         // eslint-disable-next-line
@@ -28,8 +28,7 @@ export const StudentDashboard = () => {
 
     return (
         <div className="dashboard">
-           student dashboard here
-            {/* <Body /> */}
+            <h3>Student Dashboard Here</h3>
         </div>
     )
 }

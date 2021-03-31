@@ -8,7 +8,6 @@ export const AdminDashboard = () => {
     return (
         <div className="dashboard">
             <Header Data={[{ "Text": "Users", "route": "/admin-dashboard/users" }, { "Text": "Profile", "route": "/admin-dashboard/profile" }, { "Text": "Companies", "route": "/admin-dashboard/companies" }]} />
-            {/* <Body /> */}
-        </div>
+Admin Dashboard here        </div>
     )
 }
