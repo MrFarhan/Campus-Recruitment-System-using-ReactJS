@@ -35,7 +35,6 @@ function App() {
         })
       } else {
         // No user is signed in.
-        console.log("else in app for use effect called ")
         dispatch(isLoadingAction(false))
       }
     });
@@ -51,7 +50,6 @@ function App() {
         })
       } else {
         // No user is signed in.
-        console.log("All users else triggered ")
       }
     });
 // eslint-disable-next-line
@@ -66,7 +64,6 @@ function App() {
         })
       } else {
         // No user is signed in.
-        console.log("All users jobs else triggered ")
       }
     });
 // eslint-disable-next-line

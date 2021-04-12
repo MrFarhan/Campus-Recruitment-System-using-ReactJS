@@ -11,7 +11,6 @@ export const ReadOnlyModal = (data) => {
             e.preventDefault()
         }
 
-        console.log("data is ", data)
         return (
             <Modal {...props} aria-labelledby="contained-modal-title-vcenter" >
                 <form onSubmit={HandleSubmit} style={{ width: "100%" }}>

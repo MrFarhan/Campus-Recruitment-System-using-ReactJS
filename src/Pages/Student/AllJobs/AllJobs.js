@@ -16,7 +16,6 @@ export const AllJobs = () => {
     let dispatch = useDispatch()
 
     useEffect(() => {
-        console.log("abc")
         if (state && state.currentUser && state.currentUser.Applied_Jobs) {
             setIsloading(true)
             // eslint-disable-next-line
@@ -47,26 +46,23 @@ export const AllJobs = () => {
         dispatch(appliedJobsAction(job?.jobUUID))
     }
 
-    console.log("state?.isLoading", state?.isLoading)
     if (state?.isLoading || isloading) {
         return <Loader />
     }
 
     const filteredJobs = !!myJobs && !!allJobs && Object.values(allJobs).filter(job => Array.isArray(myJobs) && myJobs?.indexOf(String(job?.jobUUID)) === -1)
-    console.log("myJobs are ", myJobs, "all Jobs are", allJobs)
-    console.log("filteredJobs are ", filteredJobs)
-    console.log("loading is ", state)
+
 
     return (
-        <>
-            <h3>All jobs here</h3>
-            <div style={{ display: "flex" }} >
+        <div style={{  width:"100%" }}>
+            <h3 style={{display:"flex",justifyContent:"center", marginBottom:"1.5em"}}>All jobs here</h3>
+            <div style={{ width: "100%", display: "flex", flexWrap:"wrap", justifyContent:"space-around" }} >
 
                 {filteredJobs && filteredJobs?.map((item, index) => {
                     return <Cards title={item?.jobTitle} text={item?.jobDescription} key2="Minimum GPA Required" value2={item?.min_gpa} key3="Tentative Salary" value3={item?.salary} linkText="Apply Now" clickHandler={() => Apply(item)} email={item?.email} key4="Posted By : " value4={item?.postedBy} footerKey="Last date to apply is" footerValue={item?.lastDateToApply} />
                 })}
 
             </div>
-        </>
+        </div>
     )
 }

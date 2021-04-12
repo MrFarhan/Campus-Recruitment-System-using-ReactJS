@@ -55,7 +55,6 @@ export const Signup = () => {
 
         firebase.auth().createUserWithEmailAndPassword(values.email, values.password).then((res) => {
             let UID = firebase.auth().currentUser?.uid
-            console.log(values, "values are ")
             firebase.database().ref('Users/' + UID).set({
                 fullName: values.fullName,
                 email: values.email,

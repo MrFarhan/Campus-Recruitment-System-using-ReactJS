@@ -9,14 +9,13 @@ import firebase from "firebase"
 import { currentUserAction, isLoadingAction } from '../../Redux/Actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { Loader } from '../../Components/Loader';
-
+import logo from "./campus_logo.png"
 
 
 export const Login = () => {
     useEffect(() => {
         firebase.auth().onAuthStateChanged(function (user) {
             if (user) {
-                console.log("user is signedin in login page")
                 // User is signed in.
                 firebase.database().ref(`Users/${firebase.auth().currentUser?.uid}/`).on("value", (res) => {
                     dispatch(currentUserAction(res.val()))
@@ -85,35 +84,37 @@ export const Login = () => {
         history.push("/signup")
     }
 
-
     if (loading) <Loader />
     return (
-        <Form onSubmit={formik.handleSubmit} >
-            <h1 className="heading">Campus Recruitment System from App JS</h1><br />
-            <Form.Group >
-                <Form.Label className="labels" htmlFor="email">Email</Form.Label>
-                <Form.Control id="email" type="email" placeholder="Enter email" {...formik.getFieldProps('email')} autoFocus />
-                <span className="inputerror">  {formik.touched.email && formik.errors.email ? (
-                    <div>{formik.errors.email}</div>
-                ) : null}</span>
-            </Form.Group>
+        <div className="loginMain">
+            <Form onSubmit={formik.handleSubmit} >
+                <img src={logo} className="compLogo" alt="Logo" />
+                <Form.Group >
+                    <Form.Label className="labels" htmlFor="email">Email</Form.Label>
+                    <Form.Control id="email" type="email" placeholder="Enter email" {...formik.getFieldProps('email')} autoFocus />
+                    <span className="inputerror">  {formik.touched.email && formik.errors.email ? (
+                        <div>{formik.errors.email}</div>
+                    ) : null}</span>
+                </Form.Group>
 
 
 
-            <Form.Group >
-                <Form.Label className="labels">Password</Form.Label>
-                <InputGroup.Prepend>
-                    <Form.Control id="password" type={inputType} placeholder="Password" {...formik.getFieldProps('password')} />
-                    <InputGroup.Text id="inputGroupPrepend" style={{ marginLeft: "-2.5em" }}>{Icon}</InputGroup.Text>
-                </InputGroup.Prepend>
-                <span className="inputerror">{formik.touched.password && formik.errors.password ? (
-                    <div>{formik.errors.password}</div>
-                ) : null}</span>
-            </Form.Group>
-            <Form.Group style={{ display: "flex" }}>
-                <Form.Check type="checkbox" label="Remember me" />
-            </Form.Group>
-            <Button variant="primary" type="submit" >  Login</Button>
-            <Button variant="link" onClick={SignupFunc}>Don't have an account ?</Button>        </Form>
+                <Form.Group >
+                    <Form.Label className="labels">Password</Form.Label>
+                    <InputGroup.Prepend>
+                        <Form.Control id="password" type={inputType} placeholder="Password" {...formik.getFieldProps('password')} />
+                        <InputGroup.Text id="inputGroupPrepend" style={{ marginLeft: "-2.5em" }}>{Icon}</InputGroup.Text>
+                    </InputGroup.Prepend>
+                    <span className="inputerror">{formik.touched.password && formik.errors.password ? (
+                        <div>{formik.errors.password}</div>
+                    ) : null}</span>
+                </Form.Group>
+                <Form.Group style={{ display: "flex" }}>
+                    <Form.Check type="checkbox" label="Remember me" />
+                </Form.Group>
+                <Button variant="primary" type="submit" >  Login</Button>
+                <Button variant="link" onClick={SignupFunc}>Don't have an account ?</Button>
+            </Form>
+        </div>
     )
 }

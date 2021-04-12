@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import firebase from "firebase"
 import { useDispatch } from 'react-redux';
 import { currentUserAction, isLoadingAction } from '../Redux/Actions';
+import "./Header.css"
 
 
 export const Header = (props) => {
@@ -18,11 +19,6 @@ export const Header = (props) => {
         dispatch(isLoadingAction(false))
         history.push("/")
     }
-
-    // const Home = () => {
-    //     history.push("/")
-
-    // }
 
     return (
         <div >

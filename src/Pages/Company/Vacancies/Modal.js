@@ -45,7 +45,6 @@ export const MyModal = () => {
         });
         const PostJob = (values) => {
             const jobUUID = Date.now()
-            console.log("JOb uuid is",jobUUID)
             firebase.database().ref(`Jobs/${jobUUID}`).update({
                 jobTitle: values.jobTitle,
                 jobDescription: values.jobDescription,
@@ -125,7 +124,7 @@ export const MyModal = () => {
     return (
         <>
             <AddVecancyModal show={modalShow} onHide={() => setModalShow(false)} />
-            <Button variant="outline-success" onClick={() => setModalShow(true)} style={{ display: "block", width: "50%" }}>Post Job</Button>
+            <Button variant="outline-success" onClick={() => setModalShow(true)} style={{ display: "block", width: "50%" , marginTop:"2em", marginLeft:"25%"}}>Post Job</Button>
             <br />
         </>
     )

@@ -8,9 +8,9 @@ export const Cards = ({ title, text, key2, value2, key3, value3, key4, value4, e
     }
     return (
         // <span>
-        <div style={{ width: "100%" }}>
-            <Card style={{ width: "18em", height: "100%", display: "flex", justifyContent: "space-between" }}>
-                <Card.Body style={{ minHeight: "20em" }}>
+        <div style={{ display: "flex", justifyContent: "space-around", marginBottom: "2em" }}>
+            <Card style={{  width: "18em", height: "100%", display: "flex", justifyContent: "space-between" }}>
+                <Card.Body style={{ display: "flex", flexDirection: "column", minHeight: "20em" }}>
                     <Card.Title>{title}</Card.Title>
                     <Card.Subtitle className="mb-2 text-muted">{email}</Card.Subtitle>
                     <Card.Text>
@@ -25,21 +25,25 @@ export const Cards = ({ title, text, key2, value2, key3, value3, key4, value4, e
                     <Card.Text>
                         {key4} {value4}
                     </Card.Text>
-                    <Card.Link onClick={clickHandler}>{linkText}</Card.Link>
-                    <Card.Link href="#">{linkText2}</Card.Link>
+                    <span style={{ display: "flex", flexDirection: "column", marginTop: "auto" }}>
+                        <Card.Link onClick={clickHandler}>{linkText}</Card.Link>
 
-                    {dropDownValue ?
-                        <DropdownButton variant="secondary"
-                            menuAlign="right"
-                            title="Applied Students"
-                            id="dropdown-menu-align-right"
-                            onSelect={ChangeHandler}
-                        >
-                            {dropDownValue && dropDownValue.map((item, index) => (
-                                <Dropdown.Item eventKey={item?.uid}>{item?.fullName}</Dropdown.Item>
+                        <Card.Link href="#">{linkText2}</Card.Link>
 
-                            ))}
-                        </DropdownButton> : null}
+                        {dropDownValue ?
+                            <DropdownButton variant="secondary"
+                                menuAlign="right"
+                                title="Applied Students"
+                                id="dropdown-menu-align-right"
+                                onSelect={ChangeHandler}
+                                style={{ width: "100% !important", color: "red" }}
+                            >
+                                {dropDownValue && dropDownValue.map((item, index) => (
+                                    <Dropdown.Item eventKey={item?.uid} style={{ width: "100% !important", color: "blue" }}>{item?.fullName}</Dropdown.Item>
+
+                                ))}
+                            </DropdownButton> : null}
+                    </span>
 
                 </Card.Body>
                 <Card.Footer>

@@ -23,3 +23,19 @@ Form{
     display: flex;
     color: red;
   }
+
+
+  /* .loginMain{
+display: flex;
+  } */
+
+  .compLogo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 15vw;
+    margin-bottom: 1em;
+    border-radius: 1em;
+    height: 9em;
+    width: 11em;
+  }

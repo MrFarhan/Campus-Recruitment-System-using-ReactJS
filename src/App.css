@@ -1,5 +1,5 @@
 .App {
-  background-color: rgb(156, 186, 206);
+  background-color: rgb(253, 247, 247);
   /* background-image: url("./bg.jpg"); */
   /* background-repeat: no-repeat; */
   display: flex;
@@ -17,6 +17,7 @@ Form{
   justify-content: center;
   width: 50vw;
   padding: 0.1em;
+  min-width: 18em;
 }
 
 .heading{

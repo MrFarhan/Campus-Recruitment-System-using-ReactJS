@@ -14,7 +14,6 @@ export const Profile = (props) => {
     const currentUserRole = currentUser && currentUser["role"]
     const loading = state?.isLoading
     let dispatch = useDispatch()
-    console.log("current user in profile is ", currentUser)
     useEffect(() => {
         firebase.auth().onAuthStateChanged(function (user) {
             if (user) {
@@ -32,7 +31,6 @@ export const Profile = (props) => {
         });
         // eslint-disable-next-line
     }, [])
-    console.log("Loading in profile is ", loading)
 
     let history = useHistory()
 
