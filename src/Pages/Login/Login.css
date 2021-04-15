@@ -1,41 +1,30 @@
-Form{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 50vw;
-    padding: 0.1em;
-  }
-  
-  .heading{
-    display: flex;
-    flex-direction: column;
-    text-align:center;
-    justify-content: center;
-  }
-  
-  
-  .labels{
+.loginMain{
   display: flex;
-  }
-  
-  
-  .inputerror{
-    display: flex;
-    color: red;
-  }
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  background-color: white;
+  border-radius: 1em;
+  width: 400px;
+  height: 500px;
+}
+
+.compLogo{
+  display: flex;
+  margin: 0 auto;
+  width: 8em;
+  height: 7em;
+  border-radius: 1em;
+}
+
+.LoginForm{
+  width: 20em;
+  height: 24em  !important;
+}
 
 
-  /* .loginMain{
-display: flex;
-  } */
-
-  .compLogo{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-left: 15vw;
-    margin-bottom: 1em;
-    border-radius: 1em;
-    height: 9em;
-    width: 11em;
-  }
+.inputerror{
+  display: flex;
+  color: red;
+}

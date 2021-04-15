@@ -85,9 +85,11 @@ export const Login = () => {
     }
 
     if (loading) <Loader />
+
+    
     return (
         <div className="loginMain">
-            <Form onSubmit={formik.handleSubmit} >
+            <Form onSubmit={formik.handleSubmit} className="LoginForm" >
                 <img src={logo} className="compLogo" alt="Logo" />
                 <Form.Group >
                     <Form.Label className="labels" htmlFor="email">Email</Form.Label>

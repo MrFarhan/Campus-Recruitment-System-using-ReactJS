@@ -1,0 +1,50 @@
+.SignupMain{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    background-color: white;
+    border-radius: 1em;
+    width: 400px;
+    height: 700px !important;
+    
+  }
+  
+.compLogo{
+    display: flex;
+    margin: 0 auto;
+    width: 20em;
+    height: 7em;
+    border-radius: 1em;
+  }
+  
+.SignupForm{
+    width: 20em;
+    height: 40em !important;
+  }
+
+  @media screen and (max-width: 400px) {
+      .SignupMain{
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          margin: 0 auto;
+          background-color: white;
+          border-radius: 1em;
+          width: 400px;
+          height: 10em !important;
+          margin: 0 auto;
+          
+        }
+
+    .SignupForm {
+        color: black;
+      background-color: white;
+      height: 10em !important;
+      margin: 0 auto;
+  
+    }
+    
+  }

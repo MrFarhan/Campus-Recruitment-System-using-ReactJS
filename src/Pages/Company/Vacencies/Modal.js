@@ -124,7 +124,7 @@ export const MyModal = () => {
     return (
         <>
             <AddVecancyModal show={modalShow} onHide={() => setModalShow(false)} />
-            <Button variant="outline-success" onClick={() => setModalShow(true)} style={{ display: "block", width: "50%" , marginTop:"2em", marginLeft:"25%"}}>Post Job</Button>
+            <Button variant="info" onClick={() => setModalShow(true)} style={{marginLeft:"85.5%", marginTop:"-4em", width:"auto"}}>Click to post new Job</Button>
             <br />
         </>
     )

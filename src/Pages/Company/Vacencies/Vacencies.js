@@ -1,11 +1,11 @@
 import React from 'react'
 import { useSelector } from 'react-redux';
-import { Cards } from '../../Components/Cards';
-import { ReadOnlyModal } from '../../Components/ReadOnlyModal';
-import { MyModal } from './Vacancies/Modal';
+import { Cards } from '../../../Components/Cards';
+import { ReadOnlyModal } from '../../../Components/ReadOnlyModal';
+import { MyModal } from './Modal';
 import firebase from "firebase"
 
-export const Body = () => {
+export const Vacencies = () => {
 
     const state = useSelector(state => state)
     const allJobs = state?.allJobs
@@ -36,7 +36,7 @@ export const Body = () => {
     return (
         <div style={{ width: "100%", marginTop:"5em" }}>
             {!!showModal && <ReadOnlyModal data={appliedStudent} onHide={() => setShowModal(false)} ShowModal={showModal} />}
-            <h3 style={{display:"flex",justifyContent:"center"}}>Vacencies here</h3>
+            <h3 style={{display:"flex",justifyContent:"center"}}>VACENCIES HERE</h3>
             <MyModal  />
             <div style={{ width: "100%", display: "flex", flexWrap:"wrap", justifyContent:"space-around" }} >
 

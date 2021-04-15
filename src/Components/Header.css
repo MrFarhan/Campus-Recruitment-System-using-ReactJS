@@ -1,3 +1,9 @@
 /* .mr-auto a{
     padding: 0.4em;
 } */
+
+
+.mr-auto a{
+    text-decoration: none !important;
+
+}

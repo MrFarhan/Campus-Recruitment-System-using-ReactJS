@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Button, Form, Nav, Navbar } from 'react-bootstrap';
 import { CgLogOut } from "react-icons/cg"
 import { IoIosNotificationsOutline } from "react-icons/io"
@@ -11,6 +11,7 @@ import "./Header.css"
 
 
 export const Header = (props) => {
+    let [path, setPath] = React.useState(window.location.pathname.toLowerCase())
     let history = useHistory()
     let dispatch = useDispatch()
     const logout = () => {
@@ -19,16 +20,22 @@ export const Header = (props) => {
         dispatch(isLoadingAction(false))
         history.push("/")
     }
+    React.useEffect(() => {
+        console.log("path name is ", history.location.pathname)
 
+    }, [history.location.pathname])
     return (
         <div >
             <Navbar bg="light" expand="lg" fixed="top"  >
-                <Navbar.Brand >Campus Recruitment System</Navbar.Brand>
+                <Navbar.Brand ><h4>Campus Recruitment System</h4></Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="mr-auto">
                         {props?.Data?.map((item, index) => {
-                            return <Link key={index} to={item["route"]} style={{ textDecoration: "none", color: "black" }}> &nbsp; {item["Text"]} &nbsp; </Link>
+
+                            return <Link key={index} to={item["route"]} onClick={()=>setPath(item?.route)}>
+                                &nbsp; {String(window.location.pathname) == String(item["route"]) ? <span style={{ color: "red", textDecoration: "none !important" }}>{item["Text"]}</span> : <span style={{ color: "black", textDecoration: "none" }}> {item["Text"]} </span>} &nbsp;
+                                    </Link>
                         })}
                     </Nav>
                     <Form inline>
@@ -37,6 +44,6 @@ export const Header = (props) => {
                     </Form>
                 </Navbar.Collapse>
             </Navbar>
-        </div>
+        </div >
     )
 }

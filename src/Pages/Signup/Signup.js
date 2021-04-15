@@ -4,6 +4,9 @@ import * as Yup from 'yup';
 import { Form, Button } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
 import firebase from "firebase"
+import "./Signup.css"
+import logo from "./campus_logo.png"
+
 
 
 export const Signup = () => {
@@ -103,9 +106,11 @@ export const Signup = () => {
     }
 
     return (
-        <div >
+        <div className="SignupMain">
 
-            <Form onSubmit={formik.handleSubmit} >
+            <Form onSubmit={formik.handleSubmit} className="SignupForm" >
+            <img src={logo} className="compLogo" alt="Logo" />
+
                 <Form.Group>
                     <Form.Label className="labels" htmlFor="fullName">Full Name</Form.Label>
                     <Form.Control id="fullName" type="text" placeholder="Enter Your Name" {...formik.getFieldProps('fullName')} autoFocus />

@@ -1,40 +1,18 @@
 .App {
-  background-color: rgb(253, 247, 247);
-  /* background-image: url("./bg.jpg"); */
-  /* background-repeat: no-repeat; */
+  background-color: #945894;
   display: flex;
   flex-direction: column;
-  /* padding: 2em; */
   width: 100vw;
   min-height: 100vh;
   justify-content: center;
-align-items: center;
-}
-
-Form{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 50vw;
-  padding: 0.1em;
-  min-width: 18em;
-}
-
-.heading{
-  display: flex;
-  flex-direction: column;
-  text-align:center;
-  justify-content: center;
+  align-items: center;
 }
 
 
-.labels{
-display: flex;
+@media screen and (max-width: 400px) {
+  .App {
+    background-color: white;
+    min-height: 12em !important;
+
+  }
 }
-
-
-.inputerror{
-  display: flex;
-  color: red;
-}
-

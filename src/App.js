@@ -6,15 +6,13 @@ import { Login } from './Pages/Login/Login';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { Test } from './Test';
-import { CompanyDashboard } from './Pages/Company/Dashboard/companyDashboard';
-import { StudentDashboard } from './Pages/Student/Dashboard/StudentDashboard';
 import { AdminDashboard } from './Pages/Admin/AdminDashboard';
 import { MainProfile } from './Pages/Profile/MainProfile';
 import firebase from "firebase"
 import { allJobsAction, allUsersAction, currentUserAction, isLoadingAction } from './Redux/Actions';
 import { Header } from "./Components/Header";
 import { Loader } from "./Components/Loader";
-import { Vacancies } from "./Pages/Company/Vacancies/Vacancies";
+import { Vacencies } from "./Pages/Company/Vacencies/Vacencies.js";
 import { Companies } from "./Pages/Student/Companies/Companies";
 import { AllJobs } from "./Pages/Student/AllJobs/AllJobs";
 import { AppliedJobs } from "./Pages/Student/Applied_Jobs/AppliedJobs";
@@ -68,8 +66,8 @@ function App() {
     });
 // eslint-disable-next-line
   }, [])
-  let studentHeaderData = [{ "Text": "Dashboard", "route": "/dashboard" },  { "Text": "Companies", "route": "/dashboard/companies" }, { "Text": "All Jobs", "route": "/dashboard/allJobs" }, { "Text": "Applied Jobs", "route": "/dashboard/appliedJobs" }, { "Text": "Profile", "route": "/dashboard/Profile" }]
-  let companyHeaderData = [{ "Text": "Dashboard", "route": "/dashboard" }, { "Text": " My Posts ", "route": "/dashboard/vacancies" }, { "Text": " Profile ", "route": "/dashboard/profile" }]
+  let studentHeaderData = [  { "Text": "Companies", "route": "/companies" }, { "Text": "All Jobs", "route": "/allJobs" }, { "Text": "Applied Jobs", "route": "/appliedJobs" }, { "Text": "Profile", "route": "/Profile" }]
+  let companyHeaderData = [ { "Text": "Vacencies", "route": "/Vacencies" }, { "Text": " Profile ", "route": "/profile" }]
 
   const roleCond = (param) => currentUser?.role === param;
 
@@ -86,15 +84,14 @@ function App() {
             <Route exact path="/" >  <Login /></Route>
             <Route path="/signup" ><Signup /></Route>
 
-            {<Route exact path="/dashboard" >{roleCond("Student") ? <StudentDashboard /> : roleCond("Company") ? <CompanyDashboard /> : roleCond("Admin") ? <AdminDashboard /> : <></>}</Route>}
-            {(roleCond("Student") || roleCond("Company") || roleCond("Admin") ? <Route exact path="/dashboard/profile" ><MainProfile /></Route> : <></>)}
+            {(roleCond("Student") || roleCond("Company") || roleCond("Admin") ? <Route exact path="/profile" ><MainProfile /></Route> : <></>)}
 
 
             <Route path="/test" ><Test /></Route>
-            {(currentUser?.uid) && <Route path="/dashboard/vacancies" ><Vacancies /></Route>}
-            {(currentUser?.uid) && <Route path="/dashboard/companies" ><Companies /></Route>}
-            {(currentUser?.uid) && <Route path="/dashboard/allJobs" ><AllJobs /></Route>}
-            {(currentUser?.uid) && <Route path="/dashboard/appliedJobs" ><AppliedJobs /></Route>}
+            {(currentUser?.uid) && <Route exact path="/Vacencies" ><Vacencies /></Route>}
+            {(currentUser?.uid) && <Route path="/companies" ><Companies /></Route>}
+            {(currentUser?.uid) && <Route path="/allJobs" ><AllJobs /></Route>}
+            {(currentUser?.uid) && <Route path="/appliedJobs" ><AppliedJobs /></Route>}
 
           </Switch>
 
