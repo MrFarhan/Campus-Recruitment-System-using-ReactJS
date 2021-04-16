@@ -20,7 +20,7 @@ export const Login = () => {
                 firebase.database().ref(`Users/${firebase.auth().currentUser?.uid}/`).on("value", (res) => {
                     dispatch(currentUserAction(res.val()))
                     dispatch(isLoadingAction(false))
-                    history.push("/dashboard")
+                    history.push("/profile")
                 })
             } else {
                 dispatch(isLoadingAction(false))
@@ -62,7 +62,7 @@ export const Login = () => {
                 firebase.database().ref(`Users/${firebase.auth().currentUser?.uid}/`).on("value", (res) => {
                     dispatch(currentUserAction(res.val()))
                     dispatch(isLoadingAction(false))
-                    history.push("/dashboard")
+                    history.push("/")
 
                 })
             }).catch(function (error) {

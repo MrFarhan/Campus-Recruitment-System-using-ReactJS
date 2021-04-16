@@ -1,0 +1,10 @@
+.dropdown-toggle {
+    display: block;
+    width: 100%;
+}
+
+.dropdown-item{
+    display: block;
+    /* width: 100%; */
+
+}

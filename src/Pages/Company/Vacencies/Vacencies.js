@@ -4,6 +4,7 @@ import { Cards } from '../../../Components/Cards';
 import { ReadOnlyModal } from '../../../Components/ReadOnlyModal';
 import { MyModal } from './Modal';
 import firebase from "firebase"
+import "./Vacencies.css"
 
 export const Vacencies = () => {
 
@@ -13,6 +14,7 @@ export const Vacencies = () => {
     const allUsers = state?.allUsers
     const [showModal, setShowModal] = React.useState(false)
     const [appliedStudent, setAppliedStudent] = React.useState()
+    const currentUser = state?.currentUser
 
     const DeleteJob = (e) => {
         let jobUUID = e?.jobUUID
@@ -32,13 +34,16 @@ export const Vacencies = () => {
 
     }
 
-
+    // if (currentUser?.role !== "Company"){
+    //     return history.push("/")
+    // }
+    // console.log("current user role is ", currentUser?.role)
     return (
-        <div style={{ width: "100%", marginTop:"5em" }}>
+        <div style={{ width: "100%", marginTop: "5em" }}>
             {!!showModal && <ReadOnlyModal data={appliedStudent} onHide={() => setShowModal(false)} ShowModal={showModal} />}
-            <h3 style={{display:"flex",justifyContent:"center"}}>VACENCIES HERE</h3>
-            <MyModal  />
-            <div style={{ width: "100%", display: "flex", flexWrap:"wrap", justifyContent:"space-around" }} >
+            <h3 className="vacenciesHeading" >VACENCIES HERE</h3>
+            <MyModal />
+            <div style={{ width: "100%", display: "flex", flexWrap: "wrap", justifyContent: "space-around" }} >
 
                 {Object.entries(allJobs).map((item, index) => {
                     if (item[1]?.uid === currentUserUid) {

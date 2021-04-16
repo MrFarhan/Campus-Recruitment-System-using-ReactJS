@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom';
 import firebase from "firebase"
 import { Loader } from '../../Components/Loader';
 import { currentUserAction, isLoadingAction } from '../../Redux/Actions';
-
+import "./Profile.css"
 
 export const Profile = (props) => {
 
@@ -37,7 +37,11 @@ export const Profile = (props) => {
     if (loading) <Loader />
     // if (!loading && !currentUser) history.push("/")
 
-    return (<Form onSubmit={(e) => e.preventDefault()}>
+    return (
+        <div className="ProfileMain">
+
+ 
+    <Form onSubmit={(e) => e.preventDefault()} className="ProfileForm">
 
 
         {Array.from(props?.data?.fields).map((item, index) => {
@@ -68,5 +72,6 @@ export const Profile = (props) => {
         </Form.Group>
         <Button variant="primary" type="submit" onClick={props?.data?.onsubmit} > Update</Button>
     </Form>
+    </div>
     )
 }

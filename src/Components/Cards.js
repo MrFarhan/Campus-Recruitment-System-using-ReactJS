@@ -1,15 +1,17 @@
 import React from 'react'
-import { Card, Dropdown, DropdownButton } from 'react-bootstrap'
+import { Button, Card, Dropdown, DropdownButton } from 'react-bootstrap'
+import "./Card.css"
 
 export const Cards = ({ title, text, key2, value2, key3, value3, key4, value4, email, linkText, linkText2, footerKey, footerValue, clickHandler, dropDownValue, dropDownClickHandler }) => {
 
     const ChangeHandler = (e) => {
         dropDownClickHandler(e)
     }
+    // console.log(dropDownValue.length, "dd value")
     return (
         // <span>
         <div style={{ display: "flex", justifyContent: "space-around", marginBottom: "2em" }}>
-            <Card style={{  width: "18em", height: "100%", display: "flex", justifyContent: "space-between" }}>
+            <Card style={{ width: "18em", height: "100%", display: "flex", justifyContent: "space-between" }}>
                 <Card.Body style={{ display: "flex", flexDirection: "column", minHeight: "20em" }}>
                     <Card.Title>{title}</Card.Title>
                     <Card.Subtitle className="mb-2 text-muted">{email}</Card.Subtitle>
@@ -26,8 +28,8 @@ export const Cards = ({ title, text, key2, value2, key3, value3, key4, value4, e
                         {key4} {value4}
                     </Card.Text>
                     <span style={{ display: "flex", flexDirection: "column", marginTop: "auto" }}>
-                        <Card.Link onClick={clickHandler}>{linkText}</Card.Link>
-
+                        {linkText ? <Button variant="danger" onClick={clickHandler}>{linkText}</Button>
+                            : null}<br />
                         <Card.Link href="#">{linkText2}</Card.Link>
 
                         {dropDownValue ?
@@ -36,12 +38,15 @@ export const Cards = ({ title, text, key2, value2, key3, value3, key4, value4, e
                                 title="Applied Students"
                                 id="dropdown-menu-align-right"
                                 onSelect={ChangeHandler}
-                                style={{ width: "100% !important", color: "red" }}
-                            >
-                                {dropDownValue && dropDownValue.map((item, index) => (
-                                    <Dropdown.Item eventKey={item?.uid} style={{ width: "100% !important", color: "blue" }}>{item?.fullName}</Dropdown.Item>
 
-                                ))}
+                            >
+                                {dropDownValue.length > 0 ? dropDownValue?.map((item, index) => (
+                                    <Dropdown.Item eventKey={item?.uid} >{item?.fullName}</Dropdown.Item>
+
+                                )) :
+                                    <Dropdown.Item eventKey="no dat">No Entries</Dropdown.Item>
+                                }
+
                             </DropdownButton> : null}
                     </span>
 

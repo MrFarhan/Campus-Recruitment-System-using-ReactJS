@@ -27,7 +27,7 @@ export const Header = (props) => {
     return (
         <div >
             <Navbar bg="light" expand="lg" fixed="top"  >
-                <Navbar.Brand ><h4>Campus Recruitment System</h4></Navbar.Brand>
+                <Navbar.Brand ><h4 className="Headerheading">Campus Recruitment System</h4></Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="mr-auto">

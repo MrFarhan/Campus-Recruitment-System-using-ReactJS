@@ -4,6 +4,7 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import firebase from "firebase";
 import { useSelector } from 'react-redux';
+import "./Modal.css"
 
 export const MyModal = () => {
 
@@ -24,19 +25,18 @@ export const MyModal = () => {
             },
             validationSchema: Yup.object({
                 jobTitle: Yup.string()
-                    .max(15, 'Job Title should be at least 15 characters or less')
+                    .max(20, 'Job Title can only be max 20 characters')
                     .required('Job Title is required'),
                 jobDescription: Yup.string()
                     .min(20, 'Job Description should be 20 characters or more')
                     .required('Job Description is Required'),
                 min_gpa: Yup.number()
-                    .required("Phone number is required")
-                    .max(4, "GPA can not exceed 4 charactors"),
+                    .required("GPA is required")
+                    .max(4, "Type GPA in between 1 to 4"),
                 salary: Yup.number()
-                    .required("Phone number is required")
-                    .max(4, "GPA can not exceed 4 charactors"),
+                    .required("Salary amount is required"),
                 lastDate: Yup.date()
-                    .required('Kindly select last date to apply)'),
+                    .required('Kindly select last date to apply'),
             }),
             onSubmit: values => {
                 PostJob(values)
@@ -122,11 +122,13 @@ export const MyModal = () => {
     }
 
     return (
-        <>
+        <div className="ModalMain" >
             <AddVecancyModal show={modalShow} onHide={() => setModalShow(false)} />
-            <Button variant="info" onClick={() => setModalShow(true)} style={{marginLeft:"85.5%", marginTop:"-4em", width:"auto"}}>Click to post new Job</Button>
+            <Button variant="info" onClick={() => setModalShow(true)} 
+            // style={{marginLeft:"85.5%", marginTop:"-4em", width:"auto"}}
+            >Click to post new Job</Button>
             <br />
-        </>
+        </div>
     )
 }
 

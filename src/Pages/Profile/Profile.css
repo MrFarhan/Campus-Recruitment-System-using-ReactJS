@@ -1,0 +1,54 @@
+.ProfileMain{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* margin: 0 auto; */
+    background-color: white;
+    border-radius: 1em;
+    width: 400px;
+    margin-top: 6em;
+    height: 500px !important;
+    
+  }
+  
+.compLogo{
+    display: flex;
+    margin: 0 auto;
+    width: 20em;
+    height: 7em;
+    border-radius: 1em;
+  }
+  
+.ProfileForm{
+    width: 20em;
+    /* height: 43em !important; */
+  }
+
+  @media screen and (max-width: 400px) {
+      .ProfileMain{
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          /* margin: 0 auto; */
+          background-color: white;
+          border-radius: 1em;
+          width: 400px;
+          /* height: 15em !important; */
+          /* margin: 0 auto; */
+          margin-top: 2em;
+          /* overflow: hidden; */
+          
+        }
+
+    .ProfileForm {
+        color: black;
+      background-color: white;
+      /* height: 10em !important; */
+      /* margin-top: 6em; */
+      /* margin: 0 auto; */
+  
+    }
+    
+  }

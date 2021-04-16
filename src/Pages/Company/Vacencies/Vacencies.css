@@ -1,0 +1,22 @@
+.vacenciesHeading{
+display: flex;
+justify-content: center;
+}
+
+
+@media screen and (max-width: 594px) {
+    .vacenciesHeading{
+        justify-content: flex-start;
+       
+      }
+    }
+
+    @media screen and (max-width: 403px) {
+        .vacenciesHeading{
+            visibility: hidden;
+            /* margin-top: 1em; */
+            /* justify-content: flex-start; */
+           
+          }
+        }
+    /* 403 */
