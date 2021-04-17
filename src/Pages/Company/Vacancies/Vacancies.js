@@ -4,9 +4,16 @@ import { Cards } from '../../../Components/Cards';
 import { ReadOnlyModal } from '../../../Components/ReadOnlyModal';
 import { MyModal } from './Modal';
 import firebase from "firebase"
-import "./Vacencies.css"
+import "./Vacancies.css"
+import { useHistory } from 'react-router';
 
-export const Vacencies = () => {
+export const Vacancies = () => {
+
+    React.useEffect(() => {
+        if (state?.currentUser?.role !== "Company") {
+            return history.push("/")
+        }
+    }, [])
 
     const state = useSelector(state => state)
     const allJobs = state?.allJobs
@@ -33,15 +40,12 @@ export const Vacencies = () => {
         })
 
     }
+    let history = useHistory()
 
-    // if (currentUser?.role !== "Company"){
-    //     return history.push("/")
-    // }
-    // console.log("current user role is ", currentUser?.role)
     return (
         <div style={{ width: "100%", marginTop: "5em" }}>
             {!!showModal && <ReadOnlyModal data={appliedStudent} onHide={() => setShowModal(false)} ShowModal={showModal} />}
-            <h3 className="vacenciesHeading" >VACENCIES HERE</h3>
+            <h3 className="vacanciesHeading" >VACANCIES HERE</h3>
             <MyModal />
             <div style={{ width: "100%", display: "flex", flexWrap: "wrap", justifyContent: "space-around" }} >
 

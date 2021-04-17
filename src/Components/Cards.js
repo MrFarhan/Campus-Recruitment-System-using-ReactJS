@@ -7,9 +7,7 @@ export const Cards = ({ title, text, key2, value2, key3, value3, key4, value4, e
     const ChangeHandler = (e) => {
         dropDownClickHandler(e)
     }
-    // console.log(dropDownValue.length, "dd value")
     return (
-        // <span>
         <div style={{ display: "flex", justifyContent: "space-around", marginBottom: "2em" }}>
             <Card style={{ width: "18em", height: "100%", display: "flex", justifyContent: "space-between" }}>
                 <Card.Body style={{ display: "flex", flexDirection: "column", minHeight: "20em" }}>

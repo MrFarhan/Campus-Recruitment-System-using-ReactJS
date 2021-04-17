@@ -18,9 +18,15 @@ export const Login = () => {
             if (user) {
                 // User is signed in.
                 firebase.database().ref(`Users/${firebase.auth().currentUser?.uid}/`).on("value", (res) => {
-                    dispatch(currentUserAction(res.val()))
-                    dispatch(isLoadingAction(false))
-                    history.push("/profile")
+                    if (res.val()?.role === "Student") {
+                        dispatch(currentUserAction(res.val()))
+                        dispatch(isLoadingAction(false))
+                        history.push("/companies")
+                    } else if (res.val()?.role === "Company") {
+                        dispatch(currentUserAction(res.val()))
+                        dispatch(isLoadingAction(false))
+                        history.push("/vacancies")
+                    }
                 })
             } else {
                 dispatch(isLoadingAction(false))
@@ -86,7 +92,7 @@ export const Login = () => {
 
     if (loading) <Loader />
 
-    
+
     return (
         <div className="loginMain">
             <Form onSubmit={formik.handleSubmit} className="LoginForm" >

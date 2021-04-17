@@ -12,7 +12,7 @@ import firebase from "firebase"
 import { allJobsAction, allUsersAction, currentUserAction, isLoadingAction } from './Redux/Actions';
 import { Header } from "./Components/Header";
 import { Loader } from "./Components/Loader";
-import { Vacencies } from "./Pages/Company/Vacencies/Vacencies.js";
+import { Vacancies } from "./Pages/Company/Vacancies/Vacancies.js";
 import { Companies } from "./Pages/Student/Companies/Companies";
 import { AllJobs } from "./Pages/Student/AllJobs/AllJobs";
 import { AppliedJobs } from "./Pages/Student/Applied_Jobs/AppliedJobs";
@@ -67,7 +67,7 @@ function App() {
 // eslint-disable-next-line
   }, [])
   let studentHeaderData = [  { "Text": "Companies", "route": "/companies" }, { "Text": "All Jobs", "route": "/allJobs" }, { "Text": "Applied Jobs", "route": "/appliedJobs" }, { "Text": "Profile", "route": "/Profile" }]
-  let companyHeaderData = [ { "Text": "Vacencies", "route": "/Vacencies" }, { "Text": " Profile ", "route": "/profile" }]
+  let companyHeaderData = [ { "Text": "Vacancies", "route": "/vacancies" }, { "Text": " Profile ", "route": "/profile" }]
 
   const roleCond = (param) => currentUser?.role === param;
 
@@ -88,7 +88,7 @@ function App() {
 
 
             <Route path="/test" ><Test /></Route>
-            {(currentUser?.uid) && <Route exact path="/Vacencies" ><Vacencies /></Route>}
+            {(currentUser?.uid) && <Route exact path="/vacancies" ><Vacancies /></Route>}
             {(currentUser?.uid) && <Route path="/companies" ><Companies /></Route>}
             {(currentUser?.uid) && <Route path="/allJobs" ><AllJobs /></Route>}
             {(currentUser?.uid) && <Route path="/appliedJobs" ><AppliedJobs /></Route>}

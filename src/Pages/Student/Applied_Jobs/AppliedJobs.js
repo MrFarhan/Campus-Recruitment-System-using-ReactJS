@@ -3,10 +3,17 @@ import { useSelector } from 'react-redux'
 import { Cards } from '../../../Components/Cards'
 // eslint-disable-next-line
 import firebase from "firebase"
+import { useHistory } from 'react-router'
 
 
 
 export const AppliedJobs = () => {
+let history = useHistory()
+    useEffect(() => {
+        if (state?.currentUser?.role !== "Student") {
+            return history.push("/")
+        }
+    }, [])
     const [myJobs, setMyJobs] = useState()
     const state = useSelector(state => state)
     let myJob = []

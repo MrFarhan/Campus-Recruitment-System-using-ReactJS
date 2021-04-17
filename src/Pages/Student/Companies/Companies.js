@@ -1,9 +1,17 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
+import { useHistory } from 'react-router'
 import { Cards } from '../../../Components/Cards'
 
 export const Companies = () => {
+    let history = useHistory()
 
+    React.useEffect(() => {
+        if (state?.currentUser?.role !== "Student") {
+            return history.push("/")
+        }
+    }, [])
+    
     const state = useSelector(state => state)
     const allUsers = state?.allUsers
     let companies = []

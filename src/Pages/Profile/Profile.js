@@ -64,7 +64,7 @@ export const Profile = (props) => {
                         <Form.Control id={item?.id} as="textarea" rows={3} placeholder={item?.placeholder} value={item?.value} onChange={(e) => item?.changeHandler(e)} />
                     </Form.Group>)
             }
-            return console.log("props are ", props["data"])
+            return null
         })}
 
         <Form.Group>

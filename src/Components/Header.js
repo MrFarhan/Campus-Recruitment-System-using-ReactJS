@@ -20,10 +20,10 @@ export const Header = (props) => {
         dispatch(isLoadingAction(false))
         history.push("/")
     }
-    React.useEffect(() => {
-        console.log("path name is ", history.location.pathname)
+    // React.useEffect(() => {
+    //     console.log("path name is ", history.location.pathname)
 
-    }, [history.location.pathname])
+    // }, [history.location.pathname])
     return (
         <div >
             <Navbar bg="light" expand="lg" fixed="top"  >
