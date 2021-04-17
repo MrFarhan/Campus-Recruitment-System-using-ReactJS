@@ -13,6 +13,9 @@ export const MyModal = () => {
 
     const [modalShow, setModalShow] = React.useState(false);
     var today = new Date().toDateString()
+    var todayformated = Number(new Date().toLocaleDateString())
+
+    console.log("today formated is ", todayformated)
 
     function AddVecancyModal(props) {
         const formik = useFormik({
@@ -36,7 +39,8 @@ export const MyModal = () => {
                 salary: Yup.number()
                     .required("Salary amount is required"),
                 lastDate: Yup.date()
-                    .required('Kindly select last date to apply'),
+                    .required('Kindly select last date to apply')
+                    .min( new Date(new Date().getTime() - 86400000) , "Date cannot be in the past"),
             }),
             onSubmit: values => {
                 PostJob(values)
@@ -103,7 +107,7 @@ export const MyModal = () => {
 
                             <Form.Group >
                                 <Form.Label className="labels" htmlFor="lastDateToApply">Last Date to Apply</Form.Label>
-                                <Form.Control id="lastDateToApply" type="date" {...formik.getFieldProps('lastDate')} />
+                                <Form.Control id="lastDateToApply"  type="date"  {...formik.getFieldProps('lastDate')} />
                                 <span className="inputerror">  {formik.touched.lastDate && formik.errors.lastDate ? (
                                     <div>{formik.errors.lastDate}</div>
                                 ) : null}</span>
@@ -124,7 +128,7 @@ export const MyModal = () => {
     return (
         <div className="ModalMain" >
             <AddVecancyModal show={modalShow} onHide={() => setModalShow(false)} />
-            <Button variant="info" onClick={() => setModalShow(true)} 
+            <Button variant="info" onClick={() => setModalShow(true)}
             // style={{marginLeft:"85.5%", marginTop:"-4em", width:"auto"}}
             >Click to post new Job</Button>
             <br />
