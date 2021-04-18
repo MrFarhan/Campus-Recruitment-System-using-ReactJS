@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
-import { Cards } from '../../../Components/Cards'
+import { Cards } from '../../../Components/Card/Cards'
 // eslint-disable-next-line
 import firebase from "firebase"
 import { useHistory } from 'react-router'
@@ -35,10 +35,10 @@ let history = useHistory()
     return (
         <div style={{width:"100%",marginTop:"5em"}}>
             <h3 style={{display:"flex",justifyContent:"center", marginBottom:"1.5em"}}>Applied Jobs here</h3>
-            <div style={{ width: "100%", display: "flex", flexWrap:"wrap", justifyContent:"space-around" }}>
+            <div style={{ width: "100%", display: "flex", flexWrap:"wrap", justifyContent:"flex-start" }}>
 
                 {filteredJobs?.map((item, index) => {
-                    return <Cards key={index} title={item.jobTitle} text={item?.jobDescription} key2="Minimum GPA Required" value2={item?.min_gpa} key3="Tentative Salary" value3={item?.salary} email={item?.email} key4="Posted By : " value4={item?.postedBy} footerKey="Last date to apply is" footerValue={item?.lastDateToApply} />
+                    return <Cards key={index} title={item.jobTitle} text={item?.jobDescription} key2="Minimum GPA Required" value2={item?.min_gpa} key3="Tentative Salary" value3={new Intl.NumberFormat('en-PK', { maximumSignificantDigits: 3 }).format(item?.salary)} email={item?.email} key4="Posted By : " value4={item?.postedBy} footerKey="Last date to apply is" footerValue={item?.lastDateToApply} />
                 })}
 
             </div>

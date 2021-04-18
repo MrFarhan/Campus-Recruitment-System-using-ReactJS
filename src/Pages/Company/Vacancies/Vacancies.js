@@ -1,8 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux';
-import { Cards } from '../../../Components/Cards';
-import { ReadOnlyModal } from '../../../Components/ReadOnlyModal';
-import { MyModal } from './Modal';
+import { Cards } from '../../../Components/Card/Cards';
+import { ReadOnlyModal } from '../../../Components/Modal/ReadOnlyModal';
 import firebase from "firebase"
 import "./Vacancies.css"
 import { useHistory } from 'react-router';
@@ -46,10 +45,9 @@ export const Vacancies = () => {
         <div style={{ width: "100%", marginTop: "5em" }}>
             {!!showModal && <ReadOnlyModal data={appliedStudent} onHide={() => setShowModal(false)} ShowModal={showModal} />}
             <h3 className="vacanciesHeading" >VACANCIES HERE</h3>
-            <MyModal />
-            <div style={{ width: "100%", display: "flex", flexWrap: "wrap", justifyContent: "space-around" }} >
+            <div style={{ width: "100%", display: "flex", flexWrap: "wrap", justifyContent: "flex-start" }} >
 
-                {Object.entries(allJobs).map((item, index) => {
+                {allJobs && Object.entries(allJobs).map((item, index) => {
                     if (item[1]?.uid === currentUserUid) {
                         let tempUser = []
                         item[1]?.AppliedStudents && Object.values(item[1]?.AppliedStudents).map((appliedItem, appliedIndex) => {
@@ -59,7 +57,7 @@ export const Vacancies = () => {
                                 }
                             })
                         })
-                        return <Cards title={item[1].jobTitle} text={item[1].jobDescription} key2="Minimum GPA Required" value2={item[1].min_gpa} key3="Tentative Salary" value3={item[1].salary} linkText="Delete" clickHandler={() => DeleteJob(item[1])} email={item[1].email} footerKey="Last date to apply is" footerValue={item[1].lastDateToApply} dropDownValue={tempUser} dropDownClickHandler={(e) => StudentsDropDown(e)} />
+                        return <Cards title={item[1].jobTitle} text={item[1].jobDescription} key2="Minimum GPA Required" value2={item[1].min_gpa} key3="Tentative Salary" value3={new Intl.NumberFormat('en-PK', { maximumSignificantDigits: 3 }).format(item[1].salary)} linkText="Delete" clickHandler={() => DeleteJob(item[1])} email={item[1].email} footerKey="Last date to apply is" footerValue={item[1].lastDateToApply} dropDownValue={tempUser} dropDownClickHandler={(e) => StudentsDropDown(e)} />
                     }
                 })}
 

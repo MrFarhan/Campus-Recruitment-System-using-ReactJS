@@ -10,7 +10,7 @@ import { AdminDashboard } from './Pages/Admin/AdminDashboard';
 import { MainProfile } from './Pages/Profile/MainProfile';
 import firebase from "firebase"
 import { allJobsAction, allUsersAction, currentUserAction, isLoadingAction } from './Redux/Actions';
-import { Header } from "./Components/Header";
+import { Header } from "./Components/Header/Header";
 import { Loader } from "./Components/Loader";
 import { Vacancies } from "./Pages/Company/Vacancies/Vacancies.js";
 import { Companies } from "./Pages/Student/Companies/Companies";

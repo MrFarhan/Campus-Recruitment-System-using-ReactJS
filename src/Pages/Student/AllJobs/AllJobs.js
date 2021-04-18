@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Cards } from '../../../Components/Cards'
+import { Cards } from '../../../Components/Card/Cards'
 import firebase from "firebase"
 import { appliedJobsAction } from '../../../Redux/Actions'
 import { Loader } from '../../../Components/Loader'
@@ -24,8 +24,9 @@ export const AllJobs = () => {
     }, [])
 
     useEffect(() => {
+
         if (state && state.currentUser && state.currentUser.Applied_Jobs) {
-            setIsloading(true)
+            // setIsloading(true)
             // eslint-disable-next-line
             Object.keys(state.currentUser.Applied_Jobs).map((item, index) => {
                 myJob.push(item)
@@ -34,7 +35,9 @@ export const AllJobs = () => {
 
             })
         } else {
-            setMyJobs(Object.values(allJobs))
+            allJobs && setMyJobs(Object.values(allJobs))
+            setIsloading(false)
+
         }
         // eslint-disable-next-line
     }, [state.currentUser.Applied_Jobs])
@@ -57,17 +60,16 @@ export const AllJobs = () => {
 
     const filteredJobs = !!myJobs && !!allJobs && Object.values(allJobs).filter(job => Array.isArray(myJobs) && myJobs?.indexOf(String(job?.jobUUID)) === -1)
 
-    if (state?.isLoading || isloading || !filteredJobs) {
+    if (state?.isLoading || isloading) {
         return <Loader />
     }
-
     return (
         <div style={{ width: "100%" }}>
-            <h3 style={{ display: "flex", justifyContent: "center", marginBottom: "1.5em" }}>All jobs here</h3>
-            <div style={{ width: "100%", display: "flex", flexWrap: "wrap", justifyContent: "space-around" }} >
+            <h3 style={{ display: "flex", justifyContent: "flex-start", marginBottom: "1.5em" }}>All jobs here</h3>
+            <div style={{ width: "100%", display: "flex", flexWrap: "wrap", justifyContent: "flex-start" }} >
 
                 {filteredJobs && filteredJobs?.map((item, index) => {
-                    return <Cards title={item?.jobTitle} text={item?.jobDescription} key2="Minimum GPA Required" value2={item?.min_gpa} key3="Tentative Salary" value3={item?.salary} linkText="Apply Now" clickHandler={() => Apply(item)} email={item?.email} key4="Posted By : " value4={item?.postedBy} footerKey="Last date to apply is" footerValue={item?.lastDateToApply} />
+                    return <Cards title={item?.jobTitle} text={item?.jobDescription} key2="Minimum GPA Required : " value2={item?.min_gpa} key3="Tentative Salary : " value3={new Intl.NumberFormat('en-PK', { maximumSignificantDigits: 3 }).format(item?.salary)} linkText="Apply Now" clickHandler={() => Apply(item)} email={item?.email} key4="Posted By : " value4={item?.postedBy} footerKey="Last date to apply is" footerValue={item?.lastDateToApply} />
                 })}
 
             </div>

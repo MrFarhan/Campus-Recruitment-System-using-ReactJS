@@ -1,0 +1,71 @@
+/* .mr-auto a{
+    padding: 0.4em;
+} */
+
+.mr-auto{
+    display: flex;
+    flex-direction: row;
+}
+
+.mr-auto a{
+    text-decoration: none !important;
+
+}
+
+@media screen and (max-width: 425px) {
+    .SignupMain{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: 0 auto;
+        background-color: white;
+        border-radius: 1em;
+        width: 400px;
+        height: 10em !important;
+        margin: 0 auto;
+        
+      }
+  
+      .Headerheading{
+          font-size: 1em;
+      }
+}
+
+@media screen and (max-width: 368px) {
+    .SignupMain{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: 0 auto;
+        background-color: white;
+        border-radius: 1em;
+        width: 400px;
+        height: 10em !important;
+        margin: 0 auto;
+        
+      }
+  
+      .Headerheading{
+          font-size: 1em;
+      }
+      .basic-navbar-nav{
+          background-color:"red";
+          width:"2em"
+      }
+}
+
+/* .navControlerParent{
+    /* display: flex !important; */
+    /* margin: 0 !important; */
+    /* width: 2em !important; */
+/* } */
+
+/* .navControlerChild{ */
+    /* display: flex !important;     */
+    /* margin: 0 !important; */
+    /* width: 1em !important; */
+/* }  */
+
+/* 368 */

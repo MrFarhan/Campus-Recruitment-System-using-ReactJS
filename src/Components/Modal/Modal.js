@@ -68,7 +68,7 @@ export const MyModal = () => {
                 <form onSubmit={formik.handleSubmit} style={{ width: "100%" }}>
                     <Modal.Header closeButton>
                         <Modal.Title id="contained-modal-title-vcenter">
-                            Add Vacency
+                            Add Vacancy
                         </Modal.Title>
                     </Modal.Header>
                     <Modal.Body className="show-grid">
@@ -130,7 +130,7 @@ export const MyModal = () => {
             <AddVecancyModal show={modalShow} onHide={() => setModalShow(false)} />
             <Button variant="info" onClick={() => setModalShow(true)}
             // style={{marginLeft:"85.5%", marginTop:"-4em", width:"auto"}}
-            >Click to post new Job</Button>
+            >Post Job</Button>
             <br />
         </div>
     )

@@ -6,10 +6,35 @@ import { useHistory } from 'react-router-dom';
 import firebase from "firebase"
 import "./Signup.css"
 import logo from "./campus_logo.png"
+import { useDispatch } from 'react-redux';
+import { currentUserAction, isLoadingAction } from '../../Redux/Actions';
 
 
 
 export const Signup = () => {
+
+let dispatch = useDispatch()
+    React.useEffect(() => {
+        firebase.auth().onAuthStateChanged(function (user) {
+            if (user) {
+                // User is signed in.
+                firebase.database().ref(`Users/${firebase.auth().currentUser?.uid}/`).on("value", (res) => {
+                    if (res.val()?.role === "Student") {
+                        dispatch(currentUserAction(res.val()))
+                        dispatch(isLoadingAction(false))
+                        history.push("/companies")
+                    } else if (res.val()?.role === "Company") {
+                        dispatch(currentUserAction(res.val()))
+                        dispatch(isLoadingAction(false))
+                        history.push("/vacancies")
+                    }
+                })
+            } else {
+                dispatch(isLoadingAction(false))
+            }
+        });
+        // eslint-disable-next-line
+    }, [])
     var today = new Date().toISOString()
 
 
@@ -68,36 +93,36 @@ export const Signup = () => {
             history.push("/")
 
         })
-        // .then(() => {
-        //     if (values.radioType === "Company") {
-        //         firebase.database().ref('Users/Companies' + UID).set({
-        //             fullName: values.fullName,
-        //             email: values.email,
-        //             role: values.radioType,
-        //             uid: UID,
-        //             accountCreatedOn: today
-        //         })
-        //     } else if (values.radioType === "Student") {
-        //         firebase.database().ref('Users/Students' + UID).set({
-        //             fullName: values.fullName,
-        //             email: values.email,
-        //             role: values.radioType,
-        //             uid: UID,
-        //             accountCreatedOn: today
-        //         })
-        //     }
+            // .then(() => {
+            //     if (values.radioType === "Company") {
+            //         firebase.database().ref('Users/Companies' + UID).set({
+            //             fullName: values.fullName,
+            //             email: values.email,
+            //             role: values.radioType,
+            //             uid: UID,
+            //             accountCreatedOn: today
+            //         })
+            //     } else if (values.radioType === "Student") {
+            //         firebase.database().ref('Users/Students' + UID).set({
+            //             fullName: values.fullName,
+            //             email: values.email,
+            //             role: values.radioType,
+            //             uid: UID,
+            //             accountCreatedOn: today
+            //         })
+            //     }
 
 
-        // })
-        .catch(function (error) {
-            // Handle Errors here.
-            var errorCode = error.code;
-            var errorMessage = error.message;
+            // })
+            .catch(function (error) {
+                // Handle Errors here.
+                var errorCode = error.code;
+                var errorMessage = error.message;
 
-            setSignuperror(errorMessage)
+                setSignuperror(errorMessage)
 
-            console.log(errorCode, "error code" + errorMessage, "error message")
-        });
+                console.log(errorCode, "error code" + errorMessage, "error message")
+            });
     }
 
 
@@ -109,7 +134,7 @@ export const Signup = () => {
         <div className="SignupMain">
 
             <Form onSubmit={formik.handleSubmit} className="SignupForm" >
-            <img src={logo} className="compLogo" alt="Logo" />
+                <img src={logo} className="compLogo" alt="Logo" />
 
                 <Form.Group>
                     <Form.Label className="labels" htmlFor="fullName">Full Name</Form.Label>

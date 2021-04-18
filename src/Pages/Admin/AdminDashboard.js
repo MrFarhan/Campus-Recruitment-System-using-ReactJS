@@ -1,6 +1,6 @@
 import React from 'react'
 // import { useHistory } from 'react-router-dom'
-import { Header } from '../../Components/Header';
+import { Header } from '../../Components/Header/Header';
 // import { Body } from './Body';
 
 export const AdminDashboard = () => {

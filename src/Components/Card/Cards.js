@@ -8,7 +8,7 @@ export const Cards = ({ title, text, key2, value2, key3, value3, key4, value4, e
         dropDownClickHandler(e)
     }
     return (
-        <div style={{ display: "flex", justifyContent: "space-around", marginBottom: "2em" }}>
+        <div style={{ display: "flex", alignItems: "center", marginBottom: "2em", marginRight:"0.4em", marginLeft:"0.2em" }}>
             <Card style={{ width: "18em", height: "100%", display: "flex", justifyContent: "space-between" }}>
                 <Card.Body style={{ display: "flex", flexDirection: "column", minHeight: "20em" }}>
                     <Card.Title>{title}</Card.Title>
