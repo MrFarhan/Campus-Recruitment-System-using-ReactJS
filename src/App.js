@@ -6,7 +6,6 @@ import { Login } from './Pages/Login/Login';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { Test } from './Test';
-import { AdminDashboard } from './Pages/Admin/AdminDashboard';
 import { MainProfile } from './Pages/Profile/MainProfile';
 import firebase from "firebase"
 import { allJobsAction, allUsersAction, currentUserAction, isLoadingAction } from './Redux/Actions';

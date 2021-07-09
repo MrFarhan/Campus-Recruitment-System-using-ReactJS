@@ -10,12 +10,12 @@ export const MyModal = () => {
 
     const state = useSelector(state => state)
     let UID = firebase.auth().currentUser?.uid
+    const currentUserRole = state?.currentUser?.role
+    console.log('state is ', currentUserRole)
 
     const [modalShow, setModalShow] = React.useState(false);
     var today = new Date().toDateString()
-    var todayformated = Number(new Date().toLocaleDateString())
 
-    console.log("today formated is ", todayformated)
 
     function AddVecancyModal(props) {
         const formik = useFormik({
@@ -40,7 +40,7 @@ export const MyModal = () => {
                     .required("Salary amount is required"),
                 lastDate: Yup.date()
                     .required('Kindly select last date to apply')
-                    .min( new Date(new Date().getTime() - 86400000) , "Date cannot be in the past"),
+                    .min(new Date(new Date().getTime() - 86400000), "Date cannot be in the past"),
             }),
             onSubmit: values => {
                 PostJob(values)
@@ -107,7 +107,7 @@ export const MyModal = () => {
 
                             <Form.Group >
                                 <Form.Label className="labels" htmlFor="lastDateToApply">Last Date to Apply</Form.Label>
-                                <Form.Control id="lastDateToApply"  type="date"  {...formik.getFieldProps('lastDate')} />
+                                <Form.Control id="lastDateToApply" type="date"  {...formik.getFieldProps('lastDate')} />
                                 <span className="inputerror">  {formik.touched.lastDate && formik.errors.lastDate ? (
                                     <div>{formik.errors.lastDate}</div>
                                 ) : null}</span>
@@ -127,10 +127,9 @@ export const MyModal = () => {
 
     return (
         <div className="ModalMain" >
-            <AddVecancyModal show={modalShow} onHide={() => setModalShow(false)} />
-            <Button variant="info" onClick={() => setModalShow(true)}
-            // style={{marginLeft:"85.5%", marginTop:"-4em", width:"auto"}}
-            >Post Job</Button>
+              <AddVecancyModal show={modalShow} onHide={() => setModalShow(false)} />
+              {currentUserRole === "Company" ? <Button variant="info" onClick={() => setModalShow(true)}
+            >Post Job</Button> : null}
             <br />
         </div>
     )

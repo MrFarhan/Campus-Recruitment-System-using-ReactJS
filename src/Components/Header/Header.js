@@ -1,7 +1,6 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Button, Form, Nav, Navbar } from 'react-bootstrap';
 import { CgLogOut } from "react-icons/cg"
-import { IoIosNotificationsOutline } from "react-icons/io"
 import { useHistory } from 'react-router-dom'
 import { Link } from "react-router-dom";
 import firebase from "firebase"
@@ -21,12 +20,10 @@ export const Header = (props) => {
         dispatch(isLoadingAction(false))
         history.push("/")
     }
-    const [showModal, setShowModal] = React.useState(false)
 
 
     return (
         <div >
-
             <Navbar bg="light" expand="lg" fixed="top"  >
                 <Navbar.Brand ><h4 className="Headerheading">Campus Recruitment System</h4></Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav"  className="navControlerParent"/>
@@ -41,8 +38,6 @@ export const Header = (props) => {
                     </Nav>
                     <MyModal />
                     <Form inline>
-                        {/* <IoIosNotificationsOutline size="2em" /> &nbsp;
-                        <Button variant="outline-dark" onClick={logout} className="logout">Post job</Button> */}
                         &nbsp;<Button variant="outline-dark" onClick={logout} className="logout"><CgLogOut />Logout</Button>
                     </Form>
                 </Navbar.Collapse>
