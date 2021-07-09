@@ -8,10 +8,10 @@ Formik
 Yup
 
 **Testing credentials:**
-Email: company@gmail.com
+Email: company1@gmail.com
 Pass:   111111
 
-Email:  student@gmail.com
+Email:  student2@gmail.com
 Pass:   111111
 
 
